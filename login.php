@@ -23,7 +23,7 @@ include 'header.php';
 	<input type="submit" value="Login">
 </form>
 
-<a href="index.php">Home</a>
-<?php echo "Time logged in: " . (time() - $_SESSION['startTime']); ?>
+<a href="index.php">Home</a><br>
+<?php if (isset($_SESSION['startTime'])) { echo "Time logged in: " . (time() - $_SESSION['startTime']); } ?>
 
 <?php include 'footer.php'; ?>
