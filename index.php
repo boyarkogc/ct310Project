@@ -1,6 +1,7 @@
 <?php 
 session_start ();
-include 'header.php'; 
+include 'header.php';
+include 'nav.php';
 ?>
 
 <a href="login.php">Login</a><br>

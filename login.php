@@ -14,6 +14,7 @@ if (isset ( $_POST ['login'] )) {
 }
 
 include 'header.php';
+include 'nav.php';
 ?>
 
 <form method="post" action="login.php">
