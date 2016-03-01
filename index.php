@@ -1,9 +1,11 @@
-<?php 
+<?php
 session_start ();
 include 'header.php';
 include 'nav.php';
 ?>
-
+<!--jacob muzzy
+lets see if this works
+>
 <<<<<<< HEAD
 <?php if (isset($_SESSION['startTime'])) { echo "Time logged in: " . (time() - $_SESSION['startTime']); } ?>
 
