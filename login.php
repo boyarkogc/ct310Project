@@ -2,6 +2,8 @@
 include 'support.php';
 session_start();
 
+$host = $_SERVER ['HTTP_HOST'];
+$uri = rtrim ( dirname ( $_SERVER ['PHP_SELF'] ), '/\\' );
 $users = readUsers(); 
 
 if (isset ( $_POST ['login'] )) {
@@ -11,6 +13,7 @@ if (isset ( $_POST ['login'] )) {
 		$_SESSION ['startTime'] = time();
 		$_SESSION ['userName'] = $user;
 	}
+	header ("Location: https://$host$uri/index.php");
 }
 
 include 'header.php';
