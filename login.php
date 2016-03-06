@@ -9,8 +9,8 @@ $uri = rtrim (dirname($_SERVER['PHP_SELF']), '/\\');
 $users = readUsers(); 
 
 if (isset ($_POST['login'])) {
-	$user = filter_var($_POST['userName'], FILTER_SANITIZE_SPECIAL_CHARS);
-	$pass = filter_var($_POST['password'], FILTER_SANITIZE_SPECIAL_CHARS);
+	$user = $_POST['userName'];
+	$pass = $_POST['password'];
 	if (userHashByName($users, $user) == salt($user, $pass)) {
 		$_SESSION['startTime'] = time();
 		$_SESSION['userName'] = $user;

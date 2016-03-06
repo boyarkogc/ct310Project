@@ -1,15 +1,13 @@
 <?php
 
 class User {
-   public $userName = '';/*  */
-   public $hash = '';/* Hash of password */
+	public $userName = '';/*  */
+	public $hash = '';/* Hash of password */
    
-	/* This function provides a complete comma delimeted dump of the contents/values of an object */
 	public function contents() {
 		$vals = array_values(get_object_vars($this));
 		return array_reduce($vals, create_function('$a,$b','return is_null($a) ? "$b" : "$a".","."$b";'));
 	}
-	/* Companion to contents, dumps heading/member names in tab delimeted format */
 	public function headings() {
 		$vals = array_keys(get_object_vars($this));
 		return array_reduce($vals, create_function('$a,$b','return is_null($a) ? "$b" : "$a".","."$b";'));
@@ -26,7 +24,7 @@ function newUser($userName, $hash) {
 function setupDefaultUsers() {
 	$users = array();
 	$i = 0;
-	//$users[$i++] = newUser('ct310', '');
+	$users[$i++] = newUser('ct310', '0ce8131d18aea4107081014d1e006627');//pass is $2a$10$oFNR0YCkkeE9BxCknANkbeBYPU0UmVI.WzW6aC4gc.pwhJcfdzCTG
 	$users[$i++] = newUser('greg', '6cc1b9419c7ff756978c0eab8ed06655');//pass is greg
 	$users[$i++] = newUser('jake', 'a7793d6ca120337495fd7d4d377f2440');//pass is jake
 	writeUsers($users);

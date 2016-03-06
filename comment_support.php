@@ -1,16 +1,14 @@
 <?php
 
 class Comment {
-   public $userName = '';
-   public $text = '';
-   public $date = '';
+	public $userName = '';
+	public $text = '';
+	public $date = '';
    
-	/* This function provides a complete comma delimeted dump of the contents/values of an object */
 	public function contents() {
 		$vals = array_values(get_object_vars($this));
 		return(array_reduce($vals, create_function('$a,$b','return is_null($a) ? "$b" : "$a".","."$b";')));
 	}
-	/* Companion to contents, dumps heading/member names in tab delimeted format */
 	public function headings() {
 		$vals = array_keys(get_object_vars($this));
 		return( array_reduce($vals, create_function('$a,$b','return is_null($a) ? "$b" : "$a".","."$b";')));
