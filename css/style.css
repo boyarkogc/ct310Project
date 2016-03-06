@@ -17,6 +17,7 @@ text-align:center;
 height: 30px;
 padding-top:10px;
 }
+
 #navbar a {
 padding-left: 20px;
 padding-right: 20px;
@@ -27,7 +28,7 @@ body {
 background-color: white;
 }
 
-#animals {
+.animals {
 min-width: 300px;
 padding-top:10px;
 margin-top: 50px;
@@ -36,13 +37,13 @@ height: 100px;
 background-color: #FF8D00;
 }
 
-#animals img{
+.animals img{
 padding-top:10px;
 padding-left: 20px;
 float: left;
 }
 
-#animals a{
+.animals a {
 padding-top: 40px;
 padding-right: 50%;
 color:black;
@@ -50,12 +51,12 @@ text-decoration: none;
 float:right;
 }
 
-#animals a:visited{
+.animals a:visited{
 text-decoration: none;
 color:black;
 }
 
-#dogpage{
+.dogpage {
 min-width: 400px;
 padding-top:10px;
 margin-top: 25px;
@@ -65,13 +66,13 @@ height: 100px;
 background-color: #8D8D8D;
 }
 
-#dogpage img{
+.dogpage img{
 padding-top:10px;
 padding-left: 20px;
 float: left;
 }
 
-#dogpage a{
+.dogpage a{
 padding-top: 40px;
 padding-right: 40%;
 color: #FF9716;
@@ -79,7 +80,7 @@ text-decoration: none;
 float:right;
 }
 
-#dogpage a:visited{
+.dogpage a:visited{
 text-decoration: none;
 color:#FF9716;
 }

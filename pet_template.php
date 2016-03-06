@@ -18,9 +18,11 @@ include 'nav.php';
 
 $prev_comments = readComments();
 echo "<br>\n";
-foreach ($prev_comments as $c) {
-	echo "On " . $c->date . ", " . $c->userName . " said: <br>\n" . $c->text . "<br>\n";
-	echo "<br>\n";
+if (!empty($prev_comments)) {
+	foreach ($prev_comments as $c) {
+		echo "On " . $c->date . ", " . $c->userName . " said: <br>\n" . $c->text . "<br>\n";
+		echo "<br>\n";
+	}
 }
 
 if (isset($_SESSION['userName'])):
