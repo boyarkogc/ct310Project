@@ -5,12 +5,12 @@ session_start();
 $host = $_SERVER['HTTP_HOST'];
 $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 $host = $_SERVER ['HTTP_HOST'];
-$uri = rtrim ( dirname ( $_SERVER ['PHP_SELF'] ), '/\\' );
+$uri = rtrim (dirname($_SERVER['PHP_SELF']), '/\\');
 $users = readUsers(); 
 
 if (isset ($_POST['login'])) {
-	$user = filter_var($_POST['userName'], FILTER_SANITIZE_STRING);
-	$pass = strip_tags($_POST['password'], FILTER_SANITIZE_STRING);
+	$user = filter_var($_POST['userName'], FILTER_SANITIZE_SPECIAL_CHARS);
+	$pass = filter_var($_POST['password'], FILTER_SANITIZE_SPECIAL_CHARS);
 	if (userHashByName($users, $user) == salt($user, $pass)) {
 		$_SESSION['startTime'] = time();
 		$_SESSION['userName'] = $user;

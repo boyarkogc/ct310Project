@@ -7,12 +7,12 @@ class User {
 	/* This function provides a complete comma delimeted dump of the contents/values of an object */
 	public function contents() {
 		$vals = array_values(get_object_vars($this));
-		return(array_reduce($vals, create_function('$a,$b','return is_null($a) ? "$b" : "$a".","."$b";')));
+		return array_reduce($vals, create_function('$a,$b','return is_null($a) ? "$b" : "$a".","."$b";'));
 	}
 	/* Companion to contents, dumps heading/member names in tab delimeted format */
 	public function headings() {
 		$vals = array_keys(get_object_vars($this));
-		return( array_reduce($vals, create_function('$a,$b','return is_null($a) ? "$b" : "$a".","."$b";')));
+		return array_reduce($vals, create_function('$a,$b','return is_null($a) ? "$b" : "$a".","."$b";'));
 	}
 }
 
@@ -42,7 +42,7 @@ function writeUsers($users) {
 }
 
 function readUsers() {
-	if (! file_exists('users.csv')) { setupDefaultUsers(); }
+	if (!file_exists('users.csv')) { setupDefaultUsers(); }
 	$contents = file_get_contents('users.csv');
 	$lines    = preg_split("/\r|\n/", $contents, -1, PREG_SPLIT_NO_EMPTY);
 	$keys     = preg_split("/,/", $lines[0]);

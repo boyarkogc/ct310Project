@@ -26,7 +26,7 @@ function newComment($userName, $text, $date) {
 }
 
 function writeComment($c) {
-	if (! file_exists($_SESSION['page'] . '.csv')) { writeHeading($c); }
+	if (!file_exists($_SESSION['page'] . '.csv')) { writeHeading($c); }
 	$fh = fopen($_SESSION['page'] . '.csv', 'a') or die("Can't open comment file for " . $_SESSION['page']);
 	fwrite($fh, $c->contents() . "\n");
 	fclose($fh);
@@ -39,7 +39,7 @@ function writeHeading($c) {
 }
 
 function readComments() {
-	if (! file_exists($_SESSION['page'] . '.csv')) { writeHeading(); }
+	if (!file_exists($_SESSION['page'] . '.csv')) { writeHeading(); }
 	$contents = file_get_contents($_SESSION['page'] . '.csv');
 	$lines    = preg_split("/\r|\n/", $contents, -1, PREG_SPLIT_NO_EMPTY);
 	$keys     = preg_split("/,/", $lines[0]);
