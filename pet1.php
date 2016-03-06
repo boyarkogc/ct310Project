@@ -8,12 +8,6 @@ $uri = rtrim (dirname ($_SERVER['PHP_SELF']), '/\\');
 $_SESSION['page'] = basename($_SERVER['PHP_SELF'], '.php');
 
 if (isset($_POST['done'])) {
-	$comment = newComment($_SESSION['userName'], filter_var($_POST['comment'], FILTER_SANITIZE_STRING), date("F j Y"));
-=======
-$host = $_SERVER ['HTTP_HOST'];
-$uri = rtrim ( dirname ( $_SERVER ['PHP_SELF'] ), '/\\' );
-$_SESSION['page'] = basename($_SERVER['PHP_SELF'], '.php');
-if (isset($_POST['done'])) {
 	$comment = newComment($_SESSION['userName'], $_POST['comment'], date("F j Y"));
 	writeComment($comment);
 	header("Location: https://$host$uri/" . $_SESSION['page'] . ".php");
