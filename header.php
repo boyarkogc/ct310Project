@@ -5,13 +5,9 @@
 	<link href="style.css" rel="stylesheet" type="text/css" />
 	<header>
 			<div id= "top">
-				<h1>
-					J & G Animal Rescue and Adoption Center
-				</h1>
+				<h1>J & G Animal Rescue and Adoption Center</h1>
 			</div>
-			<title>
-				J & G Animal Rescue and Adoption Center
-			</title>
+			<title>J & G Animal Rescue and Adoption Center</title>
 	</header>
 </head>
 <!-- Start of page Body -->
