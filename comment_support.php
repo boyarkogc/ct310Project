@@ -29,7 +29,7 @@ function writeComment($c) {
 	fwrite($fh, $c->contents() . "\n");
 	fclose($fh);
 }
-
+//creates csv page that will store comments associated with a given pet page; adds headings to csv file
 function writeHeading() {
 	$fh = fopen($_SESSION['page'] . '.csv', 'w+') or die("Can't open comment file for " . $_SESSION['page']);
 	$c = new Comment();
