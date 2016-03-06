@@ -17,7 +17,6 @@ text-align:center;
 height: 30px;
 padding-top:10px;
 }
-
 #navbar a {
 padding-left: 20px;
 padding-right: 20px;
@@ -25,12 +24,7 @@ color: white;
 }
 
 body {
-   background-color: #DACF8C;
-   color: white;
-   position: relative;
-   width: 90%;
-   margin: auto;
-   min-width: 600px;
+background-color: white;
 }
 
 #animals {
@@ -88,8 +82,4 @@ float:right;
 #dogpage a:visited{
 text-decoration: none;
 color:#FF9716;
-}
-
-p {
-	color:red;
 }
