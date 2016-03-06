@@ -2,13 +2,10 @@
 include 'support.php';
 session_start();
 
-<<<<<<< HEAD
 $host = $_SERVER['HTTP_HOST'];
 $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-=======
 $host = $_SERVER ['HTTP_HOST'];
 $uri = rtrim ( dirname ( $_SERVER ['PHP_SELF'] ), '/\\' );
->>>>>>> 89e66327037c7f9bb4a1c35558bd1ef92bffba5b
 $users = readUsers(); 
 
 if (isset ($_POST['login'])) {
@@ -18,11 +15,7 @@ if (isset ($_POST['login'])) {
 		$_SESSION['startTime'] = time();
 		$_SESSION['userName'] = $user;
 	}
-<<<<<<< HEAD
 	header("Location: https://$host$uri/index.php");
-=======
-	header ("Location: https://$host$uri/index.php");
->>>>>>> 89e66327037c7f9bb4a1c35558bd1ef92bffba5b
 }
 
 include 'header.php';
