@@ -2,15 +2,18 @@
 include 'support.php';
 session_start();
 
+$host = $_SERVER['HTTP_HOST'];
+$uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 $users = readUsers(); 
 
-if (isset ( $_POST ['login'] )) {
-	$user = strip_tags($_POST ['userName']);
-	$pass = strip_tags($_POST ['password']);
+if (isset ($_POST['login'])) {
+	$user = filter_var($_POST['userName'], FILTER_SANITIZE_STRING);
+	$pass = strip_tags($_POST['password'], FILTER_SANITIZE_STRING);
 	if (userHashByName($users, $user) == salt($user, $pass)) {
-		$_SESSION ['startTime'] = time();
-		$_SESSION ['userName'] = $user;
+		$_SESSION['startTime'] = time();
+		$_SESSION['userName'] = $user;
 	}
+	header("Location: https://$host$uri/index.php");
 }
 
 include 'header.php';
@@ -24,7 +27,6 @@ include 'nav.php';
 	<input type="submit" value="Login">
 </form>
 
-<a href="index.php">Home</a><br>
 <?php if (isset($_SESSION['startTime'])) { echo "Time logged in: " . (time() - $_SESSION['startTime']); } ?>
 
 <?php include 'footer.php'; ?>
