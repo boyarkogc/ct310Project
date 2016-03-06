@@ -1,9 +1,9 @@
-<div id = "links">
+<div id = "navbar">
 	<nav>
 		<a href="index.php">Home</a>
 
 		<a href="about.php">About us</a>
-		
+
 		<a href="adopt.php">Our Adoptable Animals</a>
 
     	<?php if (!isset($_SESSION['userName'])): ?>

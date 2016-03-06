@@ -75,5 +75,4 @@ function salt($userName, $pass) {
 	$salt = substr($userName, 1, 4);
 	return md5($salt.$pass);
 }
-
 ?>
