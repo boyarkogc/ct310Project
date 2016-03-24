@@ -22,11 +22,15 @@ include 'header.php';
 include 'nav.php';
 ?>
 
+
+<div id="loginform">
 <form method="post" action="login.php">
 	Username: <input type="text" name="userName" size="30"><br/>
 	Password: <input type="password" name="password" size="30"><br/>
 	<input type="hidden" value="done" name="login">
 	<input type="submit" value="Login">
 </form>
+</div>
+
 
 <?php include 'footer.php'; ?>

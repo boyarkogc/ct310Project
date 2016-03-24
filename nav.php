@@ -4,7 +4,7 @@
 
 		<a href="about.php">About us</a>
 
-		<a href="adopt.php">Our Adoptable Animals</a>
+		<a href="theanimals.php">Our Adoptable Animals</a>
 
     	<?php if (!isset($_SESSION['userName'])): ?>
     	<a href="login.php">Login</a>

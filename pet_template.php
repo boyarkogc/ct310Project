@@ -1,8 +1,6 @@
 <?php
 include 'comment_support.php';
 
-session_start();
-
 $host = $_SERVER['HTTP_HOST'];
 $uri = rtrim (dirname ($_SERVER['PHP_SELF']), '/\\');
 $_SESSION['page'] = basename($_SERVER['PHP_SELF'], '.php');
@@ -13,8 +11,6 @@ if (isset($_POST['done'])) {
 	header("Location: https://$host$uri/" . $_SESSION['page'] . ".php");
 }
 
-include 'header.php';
-include 'nav.php';
 
 $prev_comments = readComments();
 echo "<br>\n";

@@ -8,5 +8,8 @@
 <!-- Start of page Body -->
 <body>
 	<div id="top">
+		<div id = "symbol">
+			<img src="pawprint.png" height="50" width="50">
+		</div>
 		<h1>J &amp; G Animal Rescue and Adoption Center</h1><!-- Note that & needs to be escaped in HTML-->
 	</div>

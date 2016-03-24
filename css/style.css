@@ -3,10 +3,20 @@ background-color: #A56CFF;
 margin-top: -15px;
 margin-left: -3px;
 margin-bottom: -10px;
+padding-top: 30px;
+padding-left:30px;
+padding-right:100px;
+height: 100px;
 font-family: 'Lato'; font-weight: 700;
 text-align:center;
+min-width:500px;
 }
-
+#top img{
+float: left;
+}
+#top h1{
+padding-left: 100px;
+}
 #navbar {
 display: block;
 background-color: #0088FF;
@@ -16,16 +26,21 @@ margin-bottom: -10px;
 text-align:center;
 height: 30px;
 padding-top:10px;
+min-width:550px;
 }
 
 #navbar a {
 padding-left: 20px;
 padding-right: 20px;
-color: white;
+color: black;
+}
+
+#navbar a:link {
+    text-decoration: none;
 }
 
 body {
-background-color: white;
+background-color: #cccccc;
 }
 
 .animals {
@@ -56,7 +71,7 @@ text-decoration: none;
 color:black;
 }
 
-.dogpage {
+.animalpage {
 min-width: 400px;
 padding-top:10px;
 margin-top: 25px;
@@ -66,21 +81,40 @@ height: 100px;
 background-color: #8D8D8D;
 }
 
-.dogpage img{
+.animalpage img{
 padding-top:10px;
 padding-left: 20px;
 float: left;
 }
 
-.dogpage a{
+#animalpage a{
 padding-top: 40px;
 padding-right: 40%;
-color: #FF9716;
+color: #933a00;
 text-decoration: none;
 float:right;
 }
 
-.dogpage a:visited{
+#animalpage a:visited{
 text-decoration: none;
-color:#FF9716;
+color:#933a00;
+}
+ #loginform{
+ margin-top:100px;
+ text-align:center;
+ }
+
+#aboutus{
+padding-top: 100px;
+text-align:center;
+}
+
+#homebody{
+padding-top:100px;
+text-align:center;
+}
+
+#theanimalsbody{
+
+padding-top:100px;
 }
