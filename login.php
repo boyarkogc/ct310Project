@@ -1,11 +1,10 @@
 <?php 
 include 'support.php';
 session_start();
-
+initializeDatabase();
+/*
 $host = $_SERVER['HTTP_HOST'];
 $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-$host = $_SERVER ['HTTP_HOST'];
-$uri = rtrim (dirname($_SERVER['PHP_SELF']), '/\\');
 $users = readUsers(); 
 
 if (isset ($_POST['login'])) {
@@ -17,11 +16,11 @@ if (isset ($_POST['login'])) {
 	}
 	header("Location: https://$host$uri/index.php");
 }
+*/
 
 include 'header.php';
 include 'nav.php';
 ?>
-
 
 <div id="loginform">
 <form method="post" action="login.php">
@@ -31,6 +30,5 @@ include 'nav.php';
 	<input type="submit" value="Login">
 </form>
 </div>
-
 
 <?php include 'footer.php'; ?>

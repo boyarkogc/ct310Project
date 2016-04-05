@@ -1,11 +1,8 @@
-<div id = "navbar">
+<div id ="navbar">
 	<nav>
 		<a href="index.php">Home</a>
-
 		<a href="about.php">About us</a>
-
 		<a href="theanimals.php">Our Adoptable Animals</a>
-
     	<?php if (!isset($_SESSION['userName'])): ?>
     	<a href="login.php">Login</a>
     	<?php else: ?>
