@@ -2,21 +2,32 @@
 include 'support.php';
 session_start();
 initializeDatabase();
-/*
+
 $host = $_SERVER['HTTP_HOST'];
 $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-$users = readUsers(); 
 
 if (isset ($_POST['login'])) {
 	$user = $_POST['userName'];
 	$pass = $_POST['password'];
-	if (userHashByName($users, $user) == salt($user, $pass)) {
+	if (password_verify($pass, userHashByName($user))) {
 		$_SESSION['startTime'] = time();
 		$_SESSION['userName'] = $user;
-	}
-	header("Location: https://$host$uri/index.php");
+	}/*else {
+		echo userHashByName($user);
+		echo 'hi';
+		echo 'hi';
+		echo 'hi';
+
+		echo 'hi';
+		echo 'hi';
+
+		echo 'hi';
+		echo 'hi';
+		echo password_verify($user, $pass);
+	}*/
+	//header("Location: https://$host$uri/index.php");
 }
-*/
+
 
 include 'header.php';
 include 'nav.php';
