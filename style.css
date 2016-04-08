@@ -1,0 +1,111 @@
+@charset "utf-8";
+body {
+	background-color:#cccccc;
+}
+.Content {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+	border-style:solid;
+	border-color:#064070;
+	text-align:center;
+	background-color:#FFFFFF;
+}
+
+.Header {	
+	height: 100%;
+	background-color: #FFEE00;
+	text-align: center;
+}
+
+.Header img{
+	float:left;
+	max-height:50px;
+	width:auto;
+	padding-left:1.5%;
+	padding-top:1.5%;
+}
+
+.MainTitle {
+	font-weight: bold;
+	font-size: 200%;
+	padding-bottom: 1%;
+	padding-top: 2.5%;
+	color: #0066bf;
+    	text-shadow: -0.5px 0px black, 0 0.5px black, 0.5px 0 black, 0 -0.5px black; /* Outline*/
+}
+
+.URLbar {
+	list-style-type: none;
+	margin: 0px;
+	padding: 1%;
+	overflow:auto;
+	background-color:#0088FF;
+}
+
+.Links {
+	font-weight: bold;
+	float: left;
+	width: 20%;
+	text-align: center;
+	padding-top: 5px;
+	padding-bottom: 5px;	
+}
+
+.Links a:link {
+	color:#FFFFFF;	
+	text-decoration:none;	
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.Links a:visited {
+	color:#FFFFFF;
+}
+
+.Links a:hover {
+	color:#5E5E5E;
+}
+
+.Content p {
+	padding:1%;
+	font-weight:bold;
+}
+
+.DogPhotos img {
+	height:auto;
+	width:20%;
+	padding:0.5%;
+}
+
+.Footer {
+	padding: 5px;
+	background-color: #FFEE00;
+	text-decoration:none;
+} 
+
+.LoggedIn{
+	float:left;
+	padding-left:1%;
+	padding-bottom:0.5%;
+}
+
+.warning {
+	text-align:right;	
+	padding-right:1%;
+	padding-bottom:0.5%;
+}
+
+.Footer a:link{
+	text-decoration:none;
+	color:#0066bf;
+}
+
+.Footer a:visited {
+	color:#0066bf;
+}
+
+.Footer a:hover {
+	color:#000000;
+}

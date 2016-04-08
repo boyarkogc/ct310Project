@@ -1,56 +1,27 @@
-<!DOCTYPE html>
-<html>
-<meta name="Jacob Muzzy">
-<link rel="stylesheet" type="text/css" href="../../style.css">
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css">
-
 <?php
 session_start ();
-include 'header.php';
-include 'nav.php';
 ?>
-<div id="theanimalsbody">
-	<h3>
-	Available Dogs
-	</h3>
-	
-	<div id = "animalpage">
-			<a href="dog1.php">
-				Rex </a>
-			<div id = "Rex">
-				<img src="dog1.jpg" height="200" width="200">
+<!DOCTYPE HTML>
+<html lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="author" content="Greg Boyarko, Alexander Hennings" />
+		<meta name="description" content="A fake adoption site created for the second CT310 Project at Colorado State University."/>
+		<title>Animal Rescue and Adoption Center</title>
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<div class="Content">
+			<?php include 'header.php' ?>
+			
+			<p>Welcome to our backyard. Here you can take a look at any of the dogs we currently have available for adoption. Each of these gorgeous animals is looking for a new family to love and cerish them. Click on any of our furry friends to learn more about them.</p>
+			<div class="DogPhotos"> 
+				<a href="Dogs/dog1.php"><img src="Media/dog1.jpg" class="Dog"></a>
+				<a href="Dogs/dog2.php"><img src="Media/dog2.jpg" class="Dog"></a>
+				<a href="Dogs/dog3.php"><img src="Media/dog3.jpg" class="Dog"></a> 
+				<a href="Dogs/dog4.php"><img src="Media/dog4.jpeg" class="Dog"></a> 
 			</div>
-	</div>
-	<div id = "animalpage">
-			<a href="dog2.php">
-				Willow </a>
-			<div id = "Rex">
-				<img src="dog2.jpg" height="200" width="200">
-			</div>
-	</div>
-	<div id = "animalpage">
-			<a href="dog3.php">
-				Captain Giggles </a>
-			<div id = "Rex">
-				<img src="dog3.jpg" height="200" width="200">
-			</div>
-	</div>
-	<div id = "animalpage">
-			<a href="dog4.php">
-				Killer </a>
-			<div id = "Killer">
-				<img src="dog4.jpeg" height="200" width="200">
-			</div>
-	</div>
-	
-	
-	<h4>
-	We currently do not have any other animals than what are posted above. Please check back later for more.
-	</h4>
-	
-</div>
-
-</body>
-
-
-<?php include 'footer.php'; ?>
+			<?php include 'footer.php' ?>
+		</div>
+	</body>
+</html>
