@@ -30,4 +30,3 @@ if (isset($_SESSION['userName'])):
 	<input type='submit' value='Submit'>  
 </form>
 <?php endif; ?>
-<?php include 'footer.php'; ?>

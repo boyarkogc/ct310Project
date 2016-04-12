@@ -16,10 +16,10 @@ session_start ();
 			
 			<p>Welcome to our backyard. Here you can take a look at any of the dogs we currently have available for adoption. Each of these gorgeous animals is looking for a new family to love and cerish them. Click on any of our furry friends to learn more about them.</p>
 			<div class="DogPhotos"> 
-				<a href="Dogs/dog1.php"><img src="Media/dog1.jpg" class="Dog"></a>
-				<a href="Dogs/dog2.php"><img src="Media/dog2.jpg" class="Dog"></a>
-				<a href="Dogs/dog3.php"><img src="Media/dog3.jpg" class="Dog"></a> 
-				<a href="Dogs/dog4.php"><img src="Media/dog4.jpeg" class="Dog"></a> 
+				<a href="dog1.php"><img src="Media/dog1.jpg"></a>
+				<a href="dog2.php"><img src="Media/dog2.jpg"></a>
+				<a href="dog3.php"><img src="Media/dog3.jpg"></a> 
+				<a href="dog4.php"><img src="Media/dog4.jpeg"></a> 
 			</div>
 			<?php include 'footer.php' ?>
 		</div>
