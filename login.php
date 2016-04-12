@@ -40,17 +40,17 @@ if (isset ($_POST['login'])) {
 	<body>
 		<div class="Content">
 			<?php include 'header.php' ?>
-			<p><strong>LOGIN</strong></p>
+			<div class="LoginTitle">LOGIN</div>
 			<div id="loginform">
-			<form method="post" action="login.php" class="Login">
-				Username: <input type="text" name="userName" size="30"><br/>
-				Password: <input type="password" name="password" size="30"><br/>
-				<input type="hidden" value="done" name="login">
-				<input type="submit" value="Login">
-			</form>
+				<form method="post" action="login.php" class="Login">
+					Username: <input type="text" name="userName" size="30" class="LoginField"><br/>
+					Password: <input type="password" name="password" size="30" class="LoginField"><br/>
+					<input type="hidden" value="done" name="login">
+					<input type="submit" value="Login" class="LoginButton">
+				</form>
 			</div>
+			<button type="button" class="NewAccountButton" onclick="alert('Hello world!')">Don't Have an Account?  Click Here!</button>		
 			<?php include 'footer.php' ?>
 		</div>
 	</body>
 </html>
-
