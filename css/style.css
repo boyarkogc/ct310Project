@@ -85,8 +85,31 @@ body {
 	padding:2%;
 }
 
+.LoginTitle{
+	font-size:150%;
+	font-weight:heavy;
+	margin:0.5%;
+	margin-top:2%;
+}
+ 
 .Login{
 	padding:1%;
+}
+
+.LoginField{
+	margin-bottom:0.5%;
+}
+
+.LoginButton{	
+	padding:0.2%;	
+	margin-top:0.5%;
+}
+
+.NewAccountButton{
+	padding:0.2%;
+	font-weight:heavy;
+	margin:1%;
+	margin-top:3%;
 }
 
 .Footer {
