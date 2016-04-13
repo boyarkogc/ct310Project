@@ -51,7 +51,7 @@ if (isset($_POST['done'])) {
 }
 
 include 'inc/header.php';
-include 'inc/nav.php';
+//include 'inc/nav.php';
 
 if (isset ( $error_msg )) {
 	echo $error_msg;

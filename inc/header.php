@@ -22,6 +22,9 @@
 					<a href="theanimals.php">ADOPTABLE DOGS</a>
 				</li>
 				<?php if (isset($_SESSION["username"])): ?>
+					<li class="Links">
+						<a href="add_pet.php">Add a Pet for Adoption</a>
+					</li>
 					<li class="Links">				
 						<a href="logout.php">LOGOUT</a>
 					</li>
