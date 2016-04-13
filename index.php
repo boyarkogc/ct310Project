@@ -1,15 +1,9 @@
 <?php
 session_start ();
-include 'inc/header.php';
-include 'inc/nav.php';
+include 'header.php' 
 ?>
-<body>
-	<div id = "homebody">
-		<img src="pawprint.png" height="20" width="20">
-		<p>We are a shelter for animals that dont have a home and dont have 
-		another place to go. Please follow the links above to learn more about 
-		what we do here or see what animals we have for you to bring home.</p>
-		<img src="pawprint.png" height="20" width="20">
-	</div>
-</body>
-<?php include 'inc/footer.php'; ?>
+<div class="Content">
+	<p> We are a no-kill shelter eager to find a loving home for each of animals in our care. We focus on family-friendly dogs needing a new family.</p>
+	<p> Please follow the links above to learn more about our orginization or to find a new family member for your home.</p>
+</div>
+<?php include 'footer.php' ?>

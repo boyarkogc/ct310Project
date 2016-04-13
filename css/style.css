@@ -1,120 +1,144 @@
-#top {
-background-color: #A56CFF;
-margin-top: -15px;
-margin-left: -3px;
-margin-bottom: -10px;
-padding-top: 30px;
-padding-left:30px;
-padding-right:100px;
-height: 100px;
-font-family: 'Lato'; font-weight: 700;
-text-align:center;
-min-width:500px;
-}
-#top img{
-float: left;
-}
-#top h1{
-padding-left: 100px;
-}
-#navbar {
-display: block;
-background-color: #0088FF;
-margin-top: -15px;
-margin-left: -3px;
-margin-bottom: -10px;
-text-align:center;
-height: 30px;
-padding-top:10px;
-min-width:550px;
-}
-
-#navbar a {
-padding-left: 20px;
-padding-right: 20px;
-color: black;
-}
-
-#navbar a:link {
-    text-decoration: none;
-}
-
+@charset "utf-8";
 body {
-background-color: #cccccc;
+	background-color:#cccccc;	
+}
+.Content {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	width: 99%;
+	margin-right: auto;
+	margin-left: auto;
+	border-style:solid;
+	border-color:#064070;
+	text-align:center;
+	background-color:#FFFFFF;
 }
 
-.animals {
-min-width: 300px;
-padding-top:10px;
-margin-top: 50px;
-width: 100%;
-height: 100px;
-background-color: #FF8D00;
+.Header {	
+	height: 100%;
+	background-color: #FFEE00;
+	text-align: center;
 }
 
-.animals img{
-padding-top:10px;
-padding-left: 20px;
-float: left;
+.Header img{
+	float:left;
+	max-height:50px;
+	width:auto;
+	padding-left:1.5%;
+	padding-top:1.5%;
 }
 
-.animals a {
-padding-top: 40px;
-padding-right: 50%;
-color:black;
-text-decoration: none;
-float:right;
+.MainTitle {
+	font-weight: bold;
+	font-size: 200%;
+	padding-bottom: 1%;
+	padding-top: 2.5%;
+	color: #0066bf;
+    	text-shadow: -0.5px 0px black, 0 0.5px black, 0.5px 0 black, 0 -0.5px black; /* Outline*/
 }
 
-.animals a:visited{
-text-decoration: none;
-color:black;
+.URLbar {
+	list-style-type: none;
+	margin: 0px;
+	padding: 1%;
+	overflow:auto;
+	background-color:#0088FF;
 }
 
-.animalpage {
-min-width: 400px;
-padding-top:10px;
-margin-top: 25px;
-margin-bottom: 50px;
-width: 100%;
-height: 100px;
-background-color: #8D8D8D;
+.Links {
+	font-weight: bold;
+	float: left;
+	width: 20%;
+	text-align: center;
+	padding-top: 5px;
+	padding-bottom: 5px;	
 }
 
-.animalpage img{
-padding-top:10px;
-padding-left: 20px;
-float: left;
+.Links a:link {
+	color:#FFFFFF;	
+	text-decoration:none;	
+	margin-right: auto;
+	margin-left: auto;
 }
 
-#animalpage a{
-padding-top: 40px;
-padding-right: 40%;
-color: #933a00;
-text-decoration: none;
-float:right;
+.Links a:visited {
+	color:#FFFFFF;
 }
 
-#animalpage a:visited{
-text-decoration: none;
-color:#933a00;
-}
- #loginform{
- margin-top:100px;
- text-align:center;
- }
-
-#aboutus{
-padding-top: 100px;
-text-align:center;
+.Links a:hover {
+	color:#5E5E5E;
 }
 
-#homebody{
-padding-top:100px;
-text-align:center;
+.Content p {
+	padding:1%;
+	font-weight:bold;
 }
 
-#theanimalsbody{
+.DogPhotos img {
+	height:auto;
+	width:20%;
+	padding:0.5%;
+}
 
-padding-top:100px;
+.IndividualDogPhoto img{
+	height:auto;
+	max-width:50%;
+	padding:2%;
+}
+
+.LoginTitle{
+	font-size:150%;
+	font-weight:heavy;
+	margin:0.5%;
+	margin-top:2%;
+}
+ 
+.Login{
+	padding:1%;
+}
+
+.LoginField{
+	margin-bottom:0.5%;
+}
+
+.LoginButton{	
+	padding:0.2%;	
+	margin-top:0.5%;
+}
+
+.NewAccountButton{
+	padding:0.2%;
+	font-weight:heavy;
+	margin:1%;
+	margin-top:3%;
+}
+
+.Footer {
+	padding: 5px;
+	background-color: #FFEE00;
+	text-decoration:none;
+} 
+
+.LoggedIn{
+	float:left;
+	padding-left:1%;
+	padding-bottom:0.5%;
+}
+
+.warning {
+	text-align:right;	
+	padding-right:1%;
+	padding-bottom:0.5%;
+}
+
+.Footer a:link{
+	text-decoration:none;
+	color:#0066bf;
+}
+
+.Footer a:visited {
+	color:#0066bf;
+}
+
+.Footer a:hover {
+	color:#000000;
 }
