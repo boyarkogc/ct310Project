@@ -7,7 +7,7 @@ session_start ();
 //if not logged in, redirect to homepage
 $host = $_SERVER['HTTP_HOST'];
 $uri = rtrim (dirname($_SERVER['PHP_SELF']), '/\\');
-if (!isset($_SESSION['userName'])) {
+if (!isset($_SESSION['username'])) {
 	header ("Location: https://$host$uri/index.php");
 }
 
