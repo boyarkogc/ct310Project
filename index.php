@@ -1,7 +1,7 @@
 <?php
 session_start ();
-include 'header.php';
-include 'nav.php';
+include 'inc/header.php';
+include 'inc/nav.php';
 ?>
 <body>
 	<div id = "homebody">
@@ -12,4 +12,4 @@ include 'nav.php';
 		<img src="pawprint.png" height="20" width="20">
 	</div>
 </body>
-<?php include 'footer.php'; ?>
+<?php include 'inc/footer.php'; ?>

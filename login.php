@@ -1,5 +1,5 @@
 <?php 
-include 'support.php';
+include 'lib/support.php';
 session_start();
 initializeDatabase();
 
@@ -29,8 +29,8 @@ if (isset ($_POST['login'])) {
 }
 
 
-include 'header.php';
-include 'nav.php';
+include 'inc/header.php';
+include 'inc/nav.php';
 ?>
 
 <div id="loginform">
@@ -42,4 +42,4 @@ include 'nav.php';
 </form>
 </div>
 
-<?php include 'footer.php'; ?>
+<?php include 'inc/footer.php'; ?>

@@ -51,7 +51,7 @@ function initializeDatabase() {
 	}
 
 	$sql = "CREATE TABLE IF NOT EXISTS pet_images (image_id INTEGER PRIMARY KEY ASC, pet_name VARCHAR(20), 
-		name varchar(50), type varchar(50), size int(10), ext varchar(5), FOREIGN KEY(pet_name) REFERENCES pets(pet_name))";
+		file_name varchar(50), type varchar(50), size int(10), ext varchar(5), FOREIGN KEY(pet_name) REFERENCES pets(pet_name))";
 	$status = $dbh->exec($sql);
 	if($status === FALSE){
 		echo 'Error encountered setting up images table';
@@ -90,4 +90,32 @@ function userHashByName($user_name) {
 	$hash = $res2['hash'];
 	return $hash;
 }
+
+function saveImage($imgArray, $ext, $pet_name){
+	try {
+		$dbh = new PDO("sqlite:./petRescue.db");
+	} catch (PDOException $e) {
+		/* If you get here it is mostly a permissions issue
+		* or that your path to the database is wrong
+		*/
+		echo 'Error: could not connect to database';
+		die;
+	}
+
+	$sql = "INSERT INTO pet_images (file_name, type, size, ext, pet_name) VALUES (?,?,?,?,?)";
+	$stm = $dbh->prepare($sql);
+	$values = array(
+		$imgArray["name"],
+		$imgArray["type"],
+		$imgArray["size"],
+		$ext,
+		$pet_name
+	);
+	if($stm->execute($values) === FALSE){
+		return -1;
+	}else{
+		return $dbh->lastInsertId("id");
+	}
+}
+
 ?>
