@@ -1,5 +1,5 @@
 <?php 
-include 'support.php';
+include 'lib/support.php';
 session_start();
 initializeDatabase();
 
