@@ -21,7 +21,7 @@
 				<li class="Links">
 					<a href="theanimals.php">ADOPTABLE DOGS</a>
 				</li>
-				<?php if (isset($_SESSION["username"])): ?>
+				<?php if(isset($_SESSION["username"])): ?>
 					<li class="Links">				
 						<a href="logout.php">LOGOUT</a>
 					</li>
