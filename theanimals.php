@@ -21,6 +21,11 @@ session_start ();
 				<a href="dog3.php"><img src="Media/dog3.jpg"></a> 
 				<a href="dog4.php"><img src="Media/dog4.jpeg"></a> 
 			</div>
+
+			<?php if(isset($_SESSION["username"])): ?>
+					<button type="button" class="AddAnimalButton" onclick="alert('This has not been implemented.')">Add a new Animal!</button>		
+				<?php endif; ?>	
+
 			<?php include 'footer.php' ?>
 		</div>
 	</body>

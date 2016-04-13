@@ -35,5 +35,5 @@
 				<?php endif; ?>	
 			</ul>
 		</div>
-	</body>
-</html>
+	<!--</body>
+</html>-->
