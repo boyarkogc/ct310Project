@@ -111,6 +111,13 @@ body {
 	margin-top:3%;
 }
 
+.AddAnimalButton{
+	padding:0.3%;
+	font-size:150%;
+	margin:2%;	
+	margin-top:3%;
+}
+
 .Footer {
 	padding: 5px;
 	background-color: #FFEE00;
