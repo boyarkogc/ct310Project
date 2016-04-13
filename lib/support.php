@@ -37,21 +37,21 @@ function initializeDatabase() {
 		echo 'Error encountered setting up users table';
 	}
 
-	$sql = "CREATE TABLE IF NOT EXISTS pets (pet_name VARCHAR(20) PRIMARY KEY, pet_type VARCHAR(6), summary VARCHAR(50), details VARCHAR(500), weight INTEGER)";
+	$sql = "CREATE TABLE IF NOT EXISTS pets (pet_id INTEGER PRIMARY KEY ASC, pet_name VARCHAR(20), pet_type VARCHAR(6), summary VARCHAR(50), details VARCHAR(500), weight INTEGER)";
 	$status = $dbh->exec($sql);
 	if($status === FALSE){
 		echo 'Error encountered setting up pets table';
 	}
 
-	$sql = "CREATE TABLE IF NOT EXISTS comments (comment_id INTEGER PRIMARY KEY ASC, user_name VARCHAR(15), pet_name VARCHAR(20), 
-		comment_text VARCHAR(2000), FOREIGN KEY(user_name) REFERENCES users(user_name), FOREIGN KEY(pet_name) REFERENCES pets(pet_name))";
+	$sql = "CREATE TABLE IF NOT EXISTS comments (comment_id INTEGER PRIMARY KEY ASC, user_name VARCHAR(15), pet_id INTEGER, 
+		comment_text VARCHAR(2000), FOREIGN KEY(user_name) REFERENCES users(user_name), FOREIGN KEY(pet_id) REFERENCES pets(pet_id))";
 	$status = $dbh->exec($sql);
 	if($status === FALSE) {
 		echo 'Error encountered setting up comments table';
 	}
 
-	$sql = "CREATE TABLE IF NOT EXISTS pet_images (image_id INTEGER PRIMARY KEY ASC, pet_name VARCHAR(20), 
-		file_name varchar(50), type varchar(50), size int(10), ext varchar(5), FOREIGN KEY(pet_name) REFERENCES pets(pet_name))";
+	$sql = "CREATE TABLE IF NOT EXISTS pet_images (image_id INTEGER PRIMARY KEY ASC, pet_id INTEGER, 
+		file_name varchar(50), type varchar(50), size int(10), ext varchar(5), FOREIGN KEY(pet_id) REFERENCES pets(pet_id))";
 	$status = $dbh->exec($sql);
 	if($status === FALSE){
 		echo 'Error encountered setting up images table';
@@ -91,7 +91,7 @@ function userHashByName($user_name) {
 	return $hash;
 }
 
-function saveImage($imgArray, $ext, $pet_name){
+function saveImage($imgArray, $ext, $pet_id){
 	try {
 		$dbh = new PDO("sqlite:./petRescue.db");
 	} catch (PDOException $e) {
@@ -102,20 +102,62 @@ function saveImage($imgArray, $ext, $pet_name){
 		die;
 	}
 
-	$sql = "INSERT INTO pet_images (file_name, type, size, ext, pet_name) VALUES (?,?,?,?,?)";
+	$sql = "INSERT INTO pet_images (file_name, type, size, ext, pet_id) VALUES (?,?,?,?,?)";
 	$stm = $dbh->prepare($sql);
 	$values = array(
 		$imgArray["name"],
 		$imgArray["type"],
 		$imgArray["size"],
 		$ext,
-		$pet_name
+		$pet_id
 	);
 	if($stm->execute($values) === FALSE){
 		return -1;
 	}else{
 		return $dbh->lastInsertId("id");
 	}
+}
+
+function addPet($pet_name, $pet_type, $weight, $summary, $details) {
+	try {
+		$dbh = new PDO("sqlite:./petRescue.db");
+	} catch (PDOException $e) {
+		/* If you get here it is mostly a permissions issue
+		* or that your path to the database is wrong
+		*/
+		echo 'Error: could not connect to database';
+		die;
+	}
+
+	$sql = "INSERT INTO pets (pet_name, pet_type, weight, summary, details) VALUES (?,?,?,?,?)";
+	$stm = $dbh->prepare($sql);
+	$values = array(
+		$pet_name,
+		$pet_type,
+		$weight,
+		$summary,
+		$details
+	);
+	if($stm->execute($values) === FALSE) {
+		return -1;
+	}else{
+		return $dbh->lastInsertId("id");
+	}
+}
+
+function getNumberOfImages() {
+	$img_num = $this->query("SELECT count(*)  FROM images");
+	return $img_num->fetchColumn();
+}
+
+function getImages() {
+	$sql = "SELECT * FROM pet_images";
+	return $this->query($sql);
+}
+
+function getImage($id) {
+	$sql = "SELECT * FROM pet_images WHERE id ='$id'";
+	return $this->query($sql)->fetch(); 
 }
 
 ?>

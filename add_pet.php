@@ -13,13 +13,17 @@ if (!isset($_SESSION['username'])) {
 
 $max_file_size = 500000;
 if (isset($_POST['done'])) {
+	//adds pet to the pet table
 	$pet_name = $_POST['pet_name'];
 	$pet_type = $_POST['pet_type'];
 	$weight = $_POST['weight'];
 	$summary = isset($_POST['summary']) ? $_POST['summary'] : "";
 	$details = isset($_POST['details']) ? $_POST['details'] : "";
-
-	//addPet()
+	$pet_id = addPet($pet_name, $pet_type, $weight, $summary, $details);
+	if ($pet_id == -1) {
+		$error_msg_pet = "Error adding pet";
+	}
+	//adds image to the pet_image table, with a foreign key corresponding to the pet
 	if ($_FILES ["image"]["error"] == UPLOAD_ERR_OK) {
 		if ($_FILES ["image"]["size"] > $max_file_size) {
 			$error_msg = "File is too large.";
@@ -29,7 +33,7 @@ if (isset($_POST['done'])) {
 				$error_msg = "Invalid file type. Supported file types are .jpg and .png";
 			} else {
 				// Let database save assign unique integer id.
-				$fid = saveImage($_FILES ["image"], $ext, $pet_name);
+				$fid = saveImage($_FILES ["image"], $ext, $pet_id);
 				if ($fid == - 1) {
 					$error_msg = "Unable to store image in DB";
 				} else {
@@ -51,8 +55,10 @@ if (isset($_POST['done'])) {
 }
 
 include 'inc/header.php';
-//include 'inc/nav.php';
 
+if (isset($error_msg_pet)) {
+	echo $error_msg_pet;
+}
 if (isset ( $error_msg )) {
 	echo $error_msg;
 }
