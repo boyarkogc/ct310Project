@@ -65,10 +65,6 @@ function initializeDatabase() {
 	}
 }
 
-function readUsers() {
-
-}
-
 function userHashByName($user_name) {
 	try {
 		$dbh = new PDO("sqlite:./petRescue.db");
