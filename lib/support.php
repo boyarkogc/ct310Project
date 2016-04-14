@@ -146,18 +146,46 @@ function addPet($pet_name, $pet_type, $weight, $summary, $details) {
 }
 
 function getNumberOfImages() {
-	$img_num = $this->query("SELECT count(*)  FROM images");
+	try {
+		$dbh = new PDO("sqlite:./petRescue.db");
+	} catch (PDOException $e) {
+		/* If you get here it is mostly a permissions issue
+		* or that your path to the database is wrong
+		*/
+		echo 'Error: could not connect to database';
+		die;
+	}
+	$img_num = $dbh->query("SELECT count(*)  FROM images");
 	return $img_num->fetchColumn();
 }
 
-function getImages() {
+function getImagePerPet() {
+	try {
+		$dbh = new PDO("sqlite:./petRescue.db");
+	} catch (PDOException $e) {
+		/* If you get here it is mostly a permissions issue
+		* or that your path to the database is wrong
+		*/
+		echo 'Error: could not connect to database';
+		die;
+	}
 	$sql = "SELECT * FROM pet_images";
-	return $this->query($sql);
+	/*$sql = "SELECT * FROM pet_images WHERE image_id (SELECT MIN(image_id) FROM pet_images GROUP BY pet_id)";*/
+	return $dbh->query($sql);
 }
 
-function getImage($id) {
-	$sql = "SELECT * FROM pet_images WHERE id ='$id'";
-	return $this->query($sql)->fetch(); 
+function getImage($image_id) {
+	try {
+		$dbh = new PDO("sqlite:./petRescue.db");
+	} catch (PDOException $e) {
+		/* If you get here it is mostly a permissions issue
+		* or that your path to the database is wrong
+		*/
+		echo 'Error: could not connect to database';
+		die;
+	}
+	$sql = "SELECT * FROM pet_images WHERE image_id ='$image_id'";
+	return $dbh->query($sql)->fetch(); 
 }
 
 ?>
