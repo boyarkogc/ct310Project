@@ -49,7 +49,9 @@ if (isset ($_POST['login'])) {
 					<input type="submit" value="Login" class="LoginButton">
 				</form>
 			</div>
-			<button type="button" class="NewAccountButton" onclick="alert('This has not been implemented.')">Don't Have an Account?  Click Here!</button>		
+			<form action="create_account.php">
+				<button type="submit" class="NewAccountButton">Don't Have an Account?  Click Here!</button>
+			</form>		
 			<?php include 'footer.php' ?>
 		</div>
 	</body>
