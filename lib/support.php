@@ -114,7 +114,7 @@ function saveImage($imgArray, $ext, $pet_id){
 	if($stm->execute($values) === FALSE){
 		return -1;
 	}else{
-		return $dbh->lastInsertId("id");
+		return $dbh->lastInsertId("image_id");
 	}
 }
 
@@ -141,7 +141,7 @@ function addPet($pet_name, $pet_type, $weight, $summary, $details) {
 	if($stm->execute($values) === FALSE) {
 		return -1;
 	}else{
-		return $dbh->lastInsertId("id");
+		return $dbh->lastInsertId("pet_id");
 	}
 }
 
@@ -155,7 +155,7 @@ function getNumberOfImages() {
 		echo 'Error: could not connect to database';
 		die;
 	}
-	$img_num = $dbh->query("SELECT count(*)  FROM images");
+	$img_num = $dbh->query("SELECT count(*)  FROM pet_images");
 	return $img_num->fetchColumn();
 }
 

@@ -10,7 +10,7 @@ $imageRecord = getImage ( intval ( $_GET ["image_id"] ) );
 if ($imageRecord === FALSE) {
 	die ();
 }
-echo $imageRecord;
+
 // open the file in a binary mode
 $name = $config->upload_dir . str_pad ( $imageRecord ["image_id"], $config->pad_length, "0", STR_PAD_LEFT ) . "." . $imageRecord ["ext"];
 $fp = fopen ( $name, 'rb' );
@@ -23,3 +23,4 @@ header ( "Content-Length: " . filesize ( $name ) );
 // dump the picture and stop the script
 fpassthru ( $fp );
 exit ();
+?>

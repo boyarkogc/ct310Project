@@ -12,7 +12,6 @@ include 'inc/header.php';
 	$images = getImagePerPet();
 	foreach ( $images as $img ) { 
 	?>
-		<?php echo $img["image_id"]; ?>
 		<div class="row">
 			<div class="col-xs-4 col-md-2">
 				<img class="thumbnail" src="getImage.php?image_id=<?php echo $img["image_id"];?>" alt="" />
