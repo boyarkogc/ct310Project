@@ -145,6 +145,31 @@ function addPet($pet_name, $pet_type, $weight, $summary, $details) {
 	}
 }
 
+function addComment($user_name, $pet_id, $comment) {
+	try {
+		$dbh = new PDO("sqlite:./petRescue.db");
+	} catch (PDOException $e) {
+		/* If you get here it is mostly a permissions issue
+		* or that your path to the database is wrong
+		*/
+		echo 'Error: could not connect to database';
+		die;
+	}
+
+	$sql = "INSERT INTO comments (user_name, pet_id, comment_text) VALUES (?,?,?)";
+	$stm = $dbh->prepare($sql);
+	$values = array(
+		$user_name,
+		$pet_id,
+		$comment
+	);
+	if($stm->execute($values) === FALSE) {
+		return -1;
+	}else{
+		return $dbh->lastInsertId("comment_id");
+	}
+}
+
 function getNumberOfImages() {
 	try {
 		$dbh = new PDO("sqlite:./petRescue.db");
@@ -203,6 +228,21 @@ function getPetByImageId($image_id) {
 	$image = $dbh->query($sql)->fetch();
 	$pet = $image["pet_id"];
 	$sql = "SELECT * FROM pets WHERE pet_id ='$pet'";
+	return $dbh->query($sql)->fetch();
+}
+
+function getCommentsForPet($pet_id) {
+	try {
+		$dbh = new PDO("sqlite:./petRescue.db");
+	} catch (PDOException $e) {
+		/* If you get here it is  mostly a permissions issue
+		* or that your path to the database is wrong
+		*/
+		echo 'Error: could not connect to database';
+		die;
+	}
+
+	$sql = "SELECT * FROM comments WHERE pet_id ='$pet_id'";
 	return $dbh->query($sql)->fetch();
 }
 
