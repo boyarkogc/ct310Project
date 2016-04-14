@@ -8,7 +8,7 @@ session_start ();
 		<meta name="author" content="Baradji Diallo, Alexander Hennings" />
 		<meta name="description" content="A fake adoption site created for a CT310 Project at Colorado State University."/>
 		<title>Animal Rescue and Adoption Center</title>
-		<link href="/css/style.css" rel="stylesheet" type="text/css" />
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
 		<div class="Content">

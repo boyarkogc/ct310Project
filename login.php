@@ -1,5 +1,5 @@
 <?php 
-include 'support.php';
+include 'lib/support.php';
 session_start();
 initializeDatabase();
 
@@ -7,11 +7,11 @@ $host = $_SERVER['HTTP_HOST'];
 $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 
 if (isset ($_POST['login'])) {
-	$user = $_POST['userName'];
+	$user = $_POST['username'];
 	$pass = $_POST['password'];
 	if (password_verify($pass, userHashByName($user))) {
 		$_SESSION['startTime'] = time();
-		$_SESSION['userName'] = $user;
+		$_SESSION['username'] = $user;
 	}/*else {
 		echo userHashByName($user);
 		echo 'hi';
@@ -43,13 +43,13 @@ if (isset ($_POST['login'])) {
 			<div class="LoginTitle">LOGIN</div>
 			<div id="loginform">
 				<form method="post" action="login.php" class="Login">
-					Username: <input type="text" name="userName" size="30" class="LoginField"><br/>
+					Username: <input type="text" name="username" size="30" class="LoginField"><br/>
 					Password: <input type="password" name="password" size="30" class="LoginField"><br/>
 					<input type="hidden" value="done" name="login">
 					<input type="submit" value="Login" class="LoginButton">
 				</form>
 			</div>
-			<button type="button" class="NewAccountButton" onclick="alert('Hello world!')">Don't Have an Account?  Click Here!</button>		
+			<button type="button" class="NewAccountButton" onclick="alert('This has not been implemented.')">Don't Have an Account?  Click Here!</button>		
 			<?php include 'footer.php' ?>
 		</div>
 	</body>
