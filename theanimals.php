@@ -13,15 +13,9 @@ include 'inc/header.php';
 	foreach ( $images as $img ) { 
 	?>
 		<div class="DogPhotos"> 
-			<a href="dog1.php"><img src="getImage.php?image_id=<?php echo $img["image_id"];?>" alt =""></a>
+			<a href="pet.php?image_id=<?php echo $img["image_id"]; ?>"><img src="getImage.php?image_id=<?php echo $img["image_id"];?>" alt ="Image missing for this pet"></a>
 		</div>
  	<?php }; ?>
-	<!--<div class="DogPhotos"> 
-		<a href="dog1.php"><img src="Media/dog1.jpg"></a>
-		<a href="dog2.php"><img src="Media/dog2.jpg"></a>
-		<a href="dog3.php"><img src="Media/dog3.jpg"></a> 
-		<a href="dog4.php"><img src="Media/dog4.jpeg"></a> 
-	</div>-->
 	<?php if(isset($_SESSION["username"])): ?>
 		<button type="button" class="AddAnimalButton" onclick="alert('This has not been implemented.')">Add a new Animal!</button>		
 	<?php endif; ?>	

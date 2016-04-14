@@ -188,4 +188,22 @@ function getImage($image_id) {
 	return $dbh->query($sql)->fetch(); 
 }
 
+function getPetByImageId($image_id) {
+	try {
+		$dbh = new PDO("sqlite:./petRescue.db");
+	} catch (PDOException $e) {
+		/* If you get here it is mostly a permissions issue
+		* or that your path to the database is wrong
+		*/
+		echo 'Error: could not connect to database';
+		die;
+	}
+
+	$sql = "SELECT * FROM pet_images WHERE image_id ='$image_id'";
+	$image = $dbh->query($sql)->fetch();
+	$pet = $image["pet_id"];
+	$sql = "SELECT * FROM pets WHERE pet_id ='$pet'";
+	return $dbh->query($sql)->fetch();
+}
+
 ?>
