@@ -57,12 +57,12 @@ function initializeDatabase() {
 		echo 'Error encountered setting up images table';
 	}
 	//set up admin account
-	$admin_hash = password_hash("12345");
+	/*$admin_hash = password_hash("12345");
 	$sql = "INSERT OR IGNORE INTO users (user_name, hash) VALUES ('admin', '$admin_hash')";
 	$status = $dbh->exec($sql);
 	if($status === FALSE){
 		echo 'Error encountered setting up admin account';
-	}
+	}*/
 }
 
 function readUsers() {
@@ -287,4 +287,50 @@ function getCommentsForPet($pet_id) {
 	return $dbh->query($sql);
 }
 
+function getEmailByUsername($user_name) {
+	try {
+		$dbh = new PDO("sqlite:./petRescue.db");
+	} catch (PDOException $e) {
+		/* If you get here it is mostly a permissions issue
+		* or that your path to the database is wrong
+		*/
+		echo 'Error: could not connect to database';
+		die;
+	}
+
+	$sql = "SELECT email FROM users WHERE user_name ='$user_name'";
+	$res = $dbh->query($sql)->fetch(PDO::FETCH_ASSOC);
+	return $res['email'];
+}
+
+function usernameExists($user_name) {
+	try {
+		$dbh = new PDO("sqlite:./petRescue.db");
+	} catch (PDOException $e) {
+		/* If you get here it is mostly a permissions issue
+		* or that your path to the database is wrong
+		*/
+		echo 'Error: could not connect to database';
+		die;
+	}
+	$exists = $dbh->query("SELECT count(*) FROM users WHERE user_name = '$user_name'")->fetchColumn();
+	return $exists == 1 ? 1 : 0;
+}
+
+function updatePasswordHash($user_name, $hash) {
+	try {
+		$dbh = new PDO("sqlite:./petRescue.db");
+	} catch (PDOException $e) {
+		/* If you get here it is mostly a permissions issue
+		* or that your path to the database is wrong
+		*/
+		echo 'Error: could not connect to database';
+		die;
+	}
+	$sql = "UPDATE users SET hash = '$hash' WHERE user_name = '$user_name'";
+	$status = $dbh->exec($sql);
+	if($status === FALSE){
+		echo 'Error encountered updating password';
+	}
+}
 ?>
