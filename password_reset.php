@@ -11,7 +11,7 @@ if (isset($_POST['newpass']) && isset($_POST['confirmnewpass'])) {
 		$h = password_hash($_POST['newpass']);
 		$u = $_SESSION['tempusername'];
 		updatePasswordHash($u, $h);
-		//header ( "Location: https://$host$uri/index.php" );
+		header ( "Location: https://$host$uri/index.php" );
 	}else {
 		echo "Error: your password fields did not match";
 	}
@@ -49,27 +49,16 @@ if (isset($_POST['newpass']) && isset($_POST['confirmnewpass'])) {
 			echo "Error: no such user exists\n";
 		}
 	}
-?>
+	include 'inc/header.php';
+	?>
 
-<!DOCTYPE HTML>
-<html lang="en-US">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<meta name="author" content="Greg Boyarko, Alexander Hennings" />
-		<meta name="description" content="A fake adoption site created for the second CT310 Project at Colorado State University."/>
-		<title>Animal Rescue and Adoption Center</title>
-		<link href="css/style.css" rel="stylesheet" type="text/css" />
-	</head>
-	<body>
-		<div class="Content">
-			<?php include 'header.php' ?>
-			<form method='post'>
-				Username <input type="text" name="user_name" required><br><br>
-				<input type="hidden" value="done" name="done">
-				<input type='submit' value='Send Reset Email'><br>
-			</form>		
-	
-			<?php include 'footer.php' ?>
-		</div>
-	</body>
-</html>
+	<div class="Content">	
+		<form method='post'>
+			Username <input type="text" name="user_name" required><br><br>
+			<input type="hidden" value="done" name="done">
+			<input type='submit' value='Send Reset Email'><br>
+		</form>		
+	</div>
+	<?php
+}
+include 'inc/footer.php'; ?>
