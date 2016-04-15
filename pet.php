@@ -37,12 +37,15 @@ if (isset($_POST['done'])) {
 			echo $c['user_name'] . " said: <br>\n" . $c['comment_text'] . "<br>\n";
 			echo "<br>\n";
 		}
-		?>	        
-		<p><strong>Login to make a comment about one of our available pets.</strong></p>
-		<form method="post"><!--action="php echo $current_url; ?>-->
-			<textarea name="comment" id="comment" placeholder="Your comment here." rows="4" cols="50"></textarea><br/>
-			<input type="hidden" value="done" name="done">
-			<input type="submit" value="submit">
-	 	</form>            
+		?>
+        <?php if (isset($_SESSION['username'])) { ?>        
+            <form method="post"><!--action="php echo $current_url; ?>-->
+                <textarea name="comment" id="comment" placeholder="Your comment here." rows="4" cols="50"></textarea><br/>
+                <input type="hidden" value="done" name="done">
+                <input type="submit" value="submit">
+            </form>    
+        <?php }else { ?>
+    		<p><strong>Login to make a comment about one of our available pets.</strong></p>
+        <?php }; ?>  
 	</div>
 <?php include 'inc/footer.php' ?>
