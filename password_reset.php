@@ -7,8 +7,8 @@ $uri = rtrim (dirname($_SERVER['PHP_SELF']), '/\\');
 $current_url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
 if (isset($_POST['newpass']) && isset($_POST['confirmnewpass'])) {
-	if ($_POST['newpass'] == $_POST['confirmnewpass']) {
-		$h = password_hash($_POST['newpass']);
+	if (filter_var($_POST['newpass'], FILTER_SANITIZE_SPECIAL_CHARS) == filter_var($_POST['confirmnewpass'], FILTER_SANITIZE_SPECIAL_CHARS)) {
+		$h = password_hash(filter_var($_POST['newpass'], FILTER_SANITIZE_SPECIAL_CHARS));
 		$u = $_SESSION['tempusername'];
 		updatePasswordHash($u, $h);
 		header ( "Location: https://$host$uri/index.php" );
@@ -16,7 +16,7 @@ if (isset($_POST['newpass']) && isset($_POST['confirmnewpass'])) {
 		$pass_error = "Error: your password fields did not match";
 	}
 }elseif (isset($_GET['reset']) && isset($_SESSION ['reset'] )) {
-	if ($_SESSION['reset'] == $_GET['reset']):?>
+	if (filter_var($_SESSION['reset'], FILTER_SANITIZE_SPECIAL_CHARS) == filter_var($_GET['reset'], FILTER_SANITIZE_SPECIAL_CHARS)):?>
 		<?php include 'inc/header.php'; ?>
 		<div class="contents">
 			<?php if (isset($pass_error)) {echo $pass_error . "\n";}?>
@@ -33,7 +33,7 @@ if (isset($_POST['newpass']) && isset($_POST['confirmnewpass'])) {
 	endif;
 }else {
 	if (isset($_POST['done'])) {
-		$user_name = isset($_POST['user_name']) ? $_POST['user_name'] : "";
+		$user_name = isset($_POST['user_name']) ? filter_var($_POST['user_name'], FILTER_SANITIZE_SPECIAL_CHARS) : "";
 		$_SESSION['tempusername'] = $user_name;
 		if (usernameExists($user_name)) {
 			$email = getEmailByUsername($user_name);

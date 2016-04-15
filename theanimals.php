@@ -30,7 +30,7 @@ include 'inc/header.php';
 	Each of these gorgeous animals is looking for a new family to love and cerish them. Click on any of our furry friends to learn more about them.</p>
 
 	<form>
-		<input type="text" onkeyup="search(this.value)">
+		Search for a particular pet <input type="text" onkeyup="search(this.value)">
 		<div id="live_search"></div>
 	</form>
 
@@ -43,7 +43,7 @@ include 'inc/header.php';
 		</div>
  	<?php }; ?>
 	<?php if(isset($_SESSION["username"])): ?>
-		<button type="button" class="AddAnimalButton" onclick="alert('This has not been implemented.')">Add a new Animal!</button>		
+		<a href="add_pet.php">Add a new pet</a>
 	<?php endif; ?>	
 </div>
 <?php include 'inc/footer.php'; ?>

@@ -9,8 +9,6 @@ if (strlen($q) > 0) {
     foreach ($pets as $pet) {
         $image_ids = getImageIdsByPetName($pet['pet_name']);
         foreach ($image_ids as $id) {
-            //echo "hi";
-            //echo $id['image_id'] . "\n";
             $suggestions = $suggestions . "<a href=pet.php?image_id=" . $id['image_id'] . ">" . $pet['pet_name'] . "</a><br>";
         }
     }

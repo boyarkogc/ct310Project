@@ -14,11 +14,11 @@ if (!isset($_SESSION['username'])) {
 $max_file_size = 500000;
 if (isset($_POST['done'])) {
 	//adds pet to the pet table
-	$pet_name = $_POST['pet_name'];
-	$pet_type = $_POST['pet_type'];
-	$weight = $_POST['weight'];
-	$summary = isset($_POST['summary']) ? $_POST['summary'] : "";
-	$details = isset($_POST['details']) ? $_POST['details'] : "";
+	$pet_name = filter_var($_POST['pet_name'], FILTER_SANITIZE_SPECIAL_CHARS);
+	$pet_type = filter_var($_POST['pet_type'], FILTER_SANITIZE_SPECIAL_CHARS);
+	$weight = filter_var($_POST['weight'], FILTER_SANITIZE_SPECIAL_CHARS);
+	$summary = isset($_POST['summary']) ? filter_var($_POST['summary'], FILTER_SANITIZE_SPECIAL_CHARS) : "";
+	$details = isset($_POST['details']) ? filter_var($_POST['details'], FILTER_SANITIZE_SPECIAL_CHARS) : "";
 	$pet_id = addPet($pet_name, $pet_type, $weight, $summary, $details);
 	if ($pet_id == -1) {
 		$error_msg_pet = "Error adding pet";

@@ -1,4 +1,5 @@
 <?php
+require_once 'lib/support.php';
 session_start();
 initializeDatabase();
 
