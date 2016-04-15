@@ -170,6 +170,47 @@ function addComment($user_name, $pet_id, $comment) {
 	}
 }
 
+function addUser($user_name, $hash, $first_name, $middle_name, $last_name, 
+	$phone_number, $email, $owned_dogs, $owned_cats, $owned_turtles, 
+	$foster_interest, $has_pet_to_foster, $foster_explanation) {
+	try {
+		$dbh = new PDO("sqlite:./petRescue.db");
+	} catch (PDOException $e) {
+		/* If you get here it is mostly a permissions issue
+		* or that your path to the database is wrong
+		*/
+		echo 'Error: could not connect to database';
+		die;
+	}
+
+	$sql = "INSERT INTO users (user_name, hash, first_name, middle_name, last_name, 
+	phone_number, email, owned_dogs, owned_cats, owned_turtles, 
+	foster_interest, has_pet_to_foster, foster_explanation) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+	$stm = $dbh->prepare($sql);
+	$values = array(
+		$user_name, 
+		$hash, 
+		$first_name, 
+		$middle_name, 
+		$last_name, 
+		$phone_number, 
+		$email, 
+		$owned_dogs, 
+		$owned_cats, 
+		$owned_turtles, 
+		$foster_interest, 
+		$has_pet_to_foster, 
+		$foster_explanation
+	);
+
+	if($stm->execute($values) === FALSE) {
+		return -1;
+	}else{
+		return 1;
+	}
+}
+
 function getNumberOfImages() {
 	try {
 		$dbh = new PDO("sqlite:./petRescue.db");
