@@ -41,7 +41,14 @@ if (isset($_POST['done'])) {
 			<?php include 'inc/header.php' ?>
 			<div class="IndividualDogPhoto"><img src="getImage.php?image_id=<?php echo $imageRecord["image_id"];?>" alt =""></div>
 			<!--title="Image source: https://www.petfinder.com/wp-content/uploads/2012/11/dog-how-to-select-your-new-best-friend-thinkstock99062463.jpg-->
-	        <div class="PetDescription"><?php echo $pet["details"]; ?></div>
+	        <div class="PetDescription"><?php echo $pet["details"]; ?></div><br>
+	        <?php
+	        $comments = getCommentsForPet($pet['pet_id']);
+        	foreach ($comments as $c) {
+				echo $c['user_name'] . " said: <br>\n" . $c['comment_text'] . "<br>\n";
+				echo "<br>\n";
+			}
+			?>
         		        
     		<p><strong>Login to make a comment about one of our available pets.</strong></p>
 

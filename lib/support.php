@@ -243,7 +243,7 @@ function getCommentsForPet($pet_id) {
 	}
 
 	$sql = "SELECT * FROM comments WHERE pet_id ='$pet_id'";
-	return $dbh->query($sql)->fetch();
+	return $dbh->query($sql);
 }
 
 ?>
