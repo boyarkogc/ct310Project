@@ -56,17 +56,6 @@ function initializeDatabase() {
 	if($status === FALSE){
 		echo 'Error encountered setting up images table';
 	}
-	//set up admin account
-	/*$admin_hash = password_hash("12345");
-	$sql = "INSERT OR IGNORE INTO users (user_name, hash) VALUES ('admin', '$admin_hash')";
-	$status = $dbh->exec($sql);
-	if($status === FALSE){
-		echo 'Error encountered setting up admin account';
-	}*/
-}
-
-function readUsers() {
-
 }
 
 function userHashByName($user_name) {
@@ -272,6 +261,21 @@ function getPetByImageId($image_id) {
 	return $dbh->query($sql)->fetch();
 }
 
+function getImageIdsByPetName($pet_name) {
+	try {
+		$dbh = new PDO("sqlite:./petRescue.db");
+	} catch (PDOException $e) {
+		/* If you get here it is mostly a permissions issue
+		* or that your path to the database is wrong
+		*/
+		echo 'Error: could not connect to database';
+		die;
+	}
+
+	$sql = "SELECT image_id FROM pet_images INNER JOIN pets ON pet_images.pet_id = pets.pet_id AND pet_name = '$pet_name'";
+	return $dbh->query($sql);
+}
+
 function getCommentsForPet($pet_id) {
 	try {
 		$dbh = new PDO("sqlite:./petRescue.db");
@@ -301,6 +305,21 @@ function getEmailByUsername($user_name) {
 	$sql = "SELECT email FROM users WHERE user_name ='$user_name'";
 	$res = $dbh->query($sql)->fetch(PDO::FETCH_ASSOC);
 	return $res['email'];
+}
+
+function petSearchListing($query) {
+	try {
+		$dbh = new PDO("sqlite:./petRescue.db");
+	} catch (PDOException $e) {
+		/* If you get here it is mostly a permissions issue
+		* or that your path to the database is wrong
+		*/
+		echo 'Error: could not connect to database';
+		die;
+	}
+
+	$sql = "SELECT * FROM pets WHERE pet_name LIKE '%$query%' LIMIT 1";
+	return $dbh->query($sql);
 }
 
 function usernameExists($user_name) {

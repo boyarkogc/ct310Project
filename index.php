@@ -1,5 +1,7 @@
 <?php
 session_start();
+initializeDatabase();
+
 include 'inc/header.php';
 ?>
 <div class="Content">

@@ -13,14 +13,14 @@ if (isset($_POST['newpass']) && isset($_POST['confirmnewpass'])) {
 		updatePasswordHash($u, $h);
 		header ( "Location: https://$host$uri/index.php" );
 	}else {
-		echo "Error: your password fields did not match";
+		$pass_error = "Error: your password fields did not match";
 	}
 }elseif (isset($_GET['reset']) && isset($_SESSION ['reset'] )) {
 	if ($_SESSION['reset'] == $_GET['reset']):?>
-		</head>
-	<!-- Start of page Body -->
-		<body>
+		<?php include 'inc/header.php'; ?>
 		<div class="contents">
+			<?php if (isset($pass_error)) {echo $pass_error . "\n";}?>
+
 			<p>Enter and confirm your new password</p>
 			<?php $link = "password_reset.php?reset=".$_SESSION['reset'];?>
 			<form action=<?php echo $link?> method="post">	
@@ -41,18 +41,19 @@ if (isset($_POST['newpass']) && isset($_POST['confirmnewpass'])) {
 			$page = $current_url . "?reset=" . $key;
 			$_SESSION['reset'] = $key;
 			if (mail($email, "Password Reset for CT310 Project", "Please follow this link to reset your password: " . $page)) {
-				echo "Your password reset email has been sent.";
+				$reset_message = "Your password reset email has been sent.";
 			}else {
-				echo "There was a problem sending your password reset email";
+				$reset_message = "There was a problem sending your password reset email";
 			}
 		}else {
-			echo "Error: no such user exists\n";
+			$reset_message = "Error: no such user exists\n";
 		}
 	}
 	include 'inc/header.php';
 	?>
 
 	<div class="Content">	
+		<?php if (isset($reset_message)) { echo $reset_message . "\n"; } ?>
 		<form method='post'>
 			Username <input type="text" name="user_name" required><br><br>
 			<input type="hidden" value="done" name="done">
