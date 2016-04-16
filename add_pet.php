@@ -8,7 +8,7 @@ session_start ();
 $host = $_SERVER['HTTP_HOST'];
 $uri = rtrim (dirname($_SERVER['PHP_SELF']), '/\\');
 if (!isset($_SESSION['username'])) {
-	header ("Location: https://$host$uri/index.php");
+	header ("Location: https://$host$uri/login.php");
 }
 
 $max_file_size = 500000;

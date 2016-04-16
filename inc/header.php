@@ -20,6 +20,9 @@
 						<a href="logout.php">LOGOUT</a>
 					</li>
 				<?php else: ?>
+                    <li class="Links">              
+                        <a href="add_pet.php">ADD A NEW PET</a>
+                    </li>
 					<li class="Links">				
 						<a href="login.php">LOGIN</a>
 					</li>
