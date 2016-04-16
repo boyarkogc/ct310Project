@@ -17,18 +17,17 @@ if (isset($_POST['newpass']) && isset($_POST['confirmnewpass'])) {
 	}
 }elseif (isset($_GET['reset']) && isset($_SESSION ['reset'] )) {
 	if (filter_var($_SESSION['reset'], FILTER_SANITIZE_SPECIAL_CHARS) == filter_var($_GET['reset'], FILTER_SANITIZE_SPECIAL_CHARS)):?>
-		<?php include 'inc/header.php'; ?>
 		<div class="contents">
+			<?php include 'header.php'; ?>
 			<?php if (isset($pass_error)) {echo $pass_error . "\n";}?>
 
 			<p>Enter and confirm your new password</p>
 			<?php $link = "password_reset.php?reset=".$_SESSION['reset'];?>
-			<form action=<?php echo $link?> method="post">	
+			<form action=<?php echo $link?> method="post" style="padding:1%">	
 				<input type="password" name="newpass" />
 				<input type="password" name="confirmnewpass" />
 				<button type="submit">Reset password</button> 
 			</form>
-		</div>
 	<?php
 	endif;
 }else {
@@ -49,17 +48,27 @@ if (isset($_POST['newpass']) && isset($_POST['confirmnewpass'])) {
 			$reset_message = "Error: no such user exists\n";
 		}
 	}
-	include 'inc/header.php';
-	?>
-
-	<div class="Content">	
-		<?php if (isset($reset_message)) { echo $reset_message . "\n"; } ?>
-		<form method='post'>
-			Username <input type="text" name="user_name" required><br><br>
-			<input type="hidden" value="done" name="done">
-			<input type='submit' value='Send Reset Email'><br>
-		</form>		
-	</div>
-	<?php
-}
-include 'inc/footer.php'; ?>
+?>
+<!DOCTYPE HTML>
+<html lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="author" content="Greg Boyarko, Alexander Hennings" />
+		<meta name="description" content="A fake adoption site created for the second CT310 Project at Colorado State University."/>
+		<title>Animal Rescue and Adoption Center</title>
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<div class="Content">
+			<?php include 'header.php' ?>
+			<?php if (isset($reset_message)) { echo $reset_message . "\n"; } ?>
+			<form method='post' style="padding:1%">
+				Username <input type="text" name="user_name" required><br><br>
+				<input type="hidden" value="done" name="done">
+				<input type='submit' value='Send Reset Email'><br>
+			</form>		
+<?php } ?>	
+			<?php include 'footer.php'; ?> 
+		</div>
+	</body>
+</html>

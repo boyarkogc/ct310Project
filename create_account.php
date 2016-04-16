@@ -5,7 +5,7 @@ session_start();
 $ip = ip2long($_SERVER['REMOTE_ADDR']);
 $host = $_SERVER['HTTP_HOST'];
 $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-if (!($ip >= ip2long("129.82.44.0") && $ip <= ip2long("129.82.45.255")) AND !($ip >= ip2long("97.124.253.0") && $ip <= ip2long("97.124.253.255"))) {
+if (!($ip >= ip2long("129.82.44.0") && $ip <= ip2long("129.82.45.255")) AND !($ip >= ip2long("97.124.253.0") && $ip <= ip2long("97.124.253.255"))AND !($ip >= ip2long("75.166.60.0") && $ip <= ip2long("75.166.60.255"))) {
     header ("Location: https://$host$uri/index.php");
 }
 
@@ -33,29 +33,44 @@ if (isset($_POST['done'])) {
 		echo "Account created successfully";
 	}
 }
-
-include 'inc/header.php';
 ?>
-<div class="Content">	
-	<form method='post'>
-		Username <input type="text" name="user_name" required><br><br>
-		Password <input type="password" name="password" required><br><br>
-		First Name <input type="text" name="first_name" required><br><br>
-		Middle Name <input type="text" name="middle_name"><br><br>
-		Last Name <input type="text" name="last_name" required><br><br>
-		Phone Number <input type="text" name="phone_number"><br><br>
-		Email <input type="email" name="email" required><br><br>
-		Do you own any of the following animals?
-		Dog <input type="checkbox" name="owns_dog" value="owns_dog"> 
-		Cat <input type="checkbox" name="owns_cat" value="owns_cat"> 
-		Turtle <input type="checkbox" name="owns_turtle" value="owns_turtle"><br><br>
-		Are you interested in fostering a pet? <input type="checkbox" name="foster_interest" value="foster_interest"><br><br>
-		Do you have a pet you would like to put up for adoption? <input type="checkbox" name="has_pet_to_foster" value="has_pet_to_foster"><br><br>
-		If so, please provide additional details about the pet.<br><br>
-		<textarea name="foster_explanation" id="foster_explanation" placeholder="Foster pet details" rows="4" cols="50"></textarea><br><br>
-		<br><br>
-		<input type="hidden" value="done" name="done">
-		<input type='submit' value='Submit'><br>
-	</form>		
-</div>
-<?php include 'inc/footer.php' ?>
+
+<!DOCTYPE HTML>
+<html lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="author" content="Greg Boyarko, Alexander Hennings" />
+		<meta name="description" content="A fake adoption site created for the second CT310 Project at Colorado State University."/>
+		<title>Animal Rescue and Adoption Center</title>
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<div class="Content">
+			<?php include 'header.php' ?>
+			
+			<div class="CreateAccount">
+				<form method='post'>
+					Username <input type="text" name="user_name" required><br><br>
+					Password <input type="password" name="password" required><br><br>
+					First Name <input type="text" name="first_name" required><br><br>
+					Middle Name <input type="text" name="middle_name"><br><br>
+					Last Name <input type="text" name="last_name" required><br><br>
+					Phone Number <input type="text" name="phone_number"><br><br>
+					Email <input type="email" name="email" required><br><br>
+					Do you own any of the following animals?
+					Dog <input type="checkbox" name="owns_dog" value="owns_dog"> 
+					Cat <input type="checkbox" name="owns_cat" value="owns_cat"> 
+					Turtle <input type="checkbox" name="owns_turtle" value="owns_turtle"><br><br>
+					Are you interested in fostering a pet? <input type="checkbox" name="foster_interest" value="foster_interest"><br><br>
+					Do you have a pet you would like to put up for adoption? <input type="checkbox" name="has_pet_to_foster" value="has_pet_to_foster"><br><br>
+					If so, please provide additional details about the pet.<br><br>
+					<textarea name="foster_explanation" id="foster_explanation" placeholder="Foster pet details" rows="4" cols="50"></textarea><br><br><br>
+					<input type="hidden" value="done" name="done">
+					<input type='submit' value='Submit'>
+				</form>	
+			</div>		
+
+			<?php include 'footer.php' ?>
+		</div>
+	</body>
+</html>

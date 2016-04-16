@@ -54,8 +54,6 @@ if (isset($_POST['done'])) {
 	}
 }
 
-include 'inc/header.php';
-
 if (isset($error_msg_pet)) {
 	echo $error_msg_pet;
 }
@@ -64,25 +62,40 @@ if (isset ( $error_msg )) {
 }
 ?>
 
-<form method='post' enctype="multipart/form-data">
-	Pet Name:<br>
-	<input type="text" name="pet_name" required><br>
-	Pet Type(Cat, Dog, etc.):<br>
-	<input type="text" name="pet_type" required><br>
-	Weight(in pounds):<br>
-	<input type="number" name="weight" required><br>
-	Short Summary:<br>
-	<textarea name='summary'></textarea><br>
-	Additional Details:<br>
-	<textarea name='details'></textarea><br>
-	Picture:<br>
-	<input type="file" name="image" id="image" required/><br>
-	<br>
-	<input type="hidden" value="done" name="done">
-	<input type='submit' value='Submit'><br>
-</form>
-
-<?php include 'inc/footer.php';
+<!DOCTYPE HTML>
+<html lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="author" content="Greg Boyarko, Alexander Hennings" />
+		<meta name="description" content="A fake adoption site created for the second CT310 Project at Colorado State University."/>
+		<title>Animal Rescue and Adoption Center</title>
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<div class="Content">
+			<?php include 'header.php' ?>
+			<form method='post' enctype="multipart/form-data">
+			Pet Name:<br>
+			<input type="text" name="pet_name" required><br>
+			Pet Type(Cat, Dog, etc.):<br>
+			<input type="text" name="pet_type" required><br>
+			Weight(in pounds):<br>
+			<input type="number" name="weight" required><br>
+			Short Summary:<br>
+			<textarea name='summary'></textarea><br>
+			Additional Details:<br>
+			<textarea name='details'></textarea><br>
+			Picture:<br>
+			<input type="file" name="image" id="image" required/><br>
+			<br>
+			<input type="hidden" value="done" name="done">
+			<input type='submit' value='Submit'><br>
+		</form>
+		<?php include 'footer.php' ?>
+		</div>
+	</body>
+</html>
+<?php 
 
 function parseFileSuffix($iType) {
 	if ($iType == 'image/jpeg') {
