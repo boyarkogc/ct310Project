@@ -36,7 +36,7 @@ if (isset($_POST['done'])) {
 	</head>
 	<body>
 		<div class="Content">
-			<?php include 'header.php' ?>
+			<?php include 'inc/header.php' ?>
 			<div class="IndividualDogPhoto"><img src="getImage.php?image_id=<?php echo $imageRecord["image_id"];?>" alt =""></div>
 			<!--title="Image source: https://www.petfinder.com/wp-content/uploads/2012/11/dog-how-to-select-your-new-best-friend-thinkstock99062463.jpg-->
 		        <div class="PetName"><?php echo $pet["pet_name"]; ?></div><br>
@@ -56,7 +56,7 @@ if (isset($_POST['done'])) {
         		<?php }else { ?>
     				<p><strong>Login to make a comment about one of our available pets.</strong></p>
        			<?php }; ?>  			
-			<?php include 'footer.php' ?>
+			<?php include 'inc/footer.php' ?>
 		</div>
 	</body>
 </html>

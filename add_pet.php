@@ -73,7 +73,7 @@ if (isset ( $error_msg )) {
 	</head>
 	<body>
 		<div class="Content">
-			<?php include 'header.php' ?>
+			<?php include 'inc/header.php' ?>
 			<form method='post' enctype="multipart/form-data">
 			Pet Name:<br>
 			<input type="text" name="pet_name" required><br>
@@ -91,7 +91,7 @@ if (isset ( $error_msg )) {
 			<input type="hidden" value="done" name="done">
 			<input type='submit' value='Submit'><br>
 		</form>
-		<?php include 'footer.php' ?>
+		<?php include 'inc/footer.php' ?>
 		</div>
 	</body>
 </html>

@@ -34,7 +34,7 @@ include 'lib/support.php';
 	</head>
 	<body>
 		<div class="Content">
-			<?php include 'header.php' ?>
+			<?php include 'inc/header.php' ?>
 
 			<p>Welcome to our backyard. Here you can take a look at any of the dogs we currently have available for adoption. Each of these gorgeous animals is looking for a new family to love and cerish them. Click on any of our furry friends to learn more about them.</p>
 
@@ -52,7 +52,7 @@ include 'lib/support.php';
 				<a href="pet.php?image_id=<?php echo $img["image_id"]; ?>"><img src="getImage.php?image_id=<?php echo $img["image_id"];?>" alt ="Image missing for this pet"></a>
 			</div>
  			<?php }; ?>
-			<?php include 'footer.php' ?>
+			<?php include 'inc/footer.php' ?>
 		</div>
 	</body>
 </html>

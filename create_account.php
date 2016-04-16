@@ -12,6 +12,7 @@ if (!($ip >= ip2long("129.82.44.0") && $ip <= ip2long("129.82.45.255")) AND !($i
 if (isset($_POST['done'])) {
 	$user_name = isset($_POST['user_name']) ? filter_var($_POST['user_name'], FILTER_SANITIZE_SPECIAL_CHARS) : "";
 	$password = isset($_POST['password']) ? filter_var($_POST['password'], FILTER_SANITIZE_SPECIAL_CHARS) : "";
+    $confirm_password = isset($_POST['confirm_password']) ? filter_var($_POST['confirm_password'], FILTER_SANITIZE_SPECIAL_CHARS) : "";
 	$pass_hash = password_hash($password);
 	$first_name = isset($_POST['first_name']) ? filter_var($_POST['first_name'], FILTER_SANITIZE_SPECIAL_CHARS) : "";
 	$middle_name = isset($_POST['middle_name']) ? filter_var($_POST['middle_name'], FILTER_SANITIZE_SPECIAL_CHARS) : "";
@@ -25,13 +26,17 @@ if (isset($_POST['done'])) {
 	$has_pet_to_foster = isset($_POST['has_pet_to_foster']) ? filter_var($_POST['has_pet_to_foster'], FILTER_SANITIZE_SPECIAL_CHARS) : False;
 	$foster_explanation = isset($_POST['foster_explanation']) ? filter_var($_POST['foster_explanation'], FILTER_SANITIZE_SPECIAL_CHARS) : "";
 
-	if (addUser($user_name, $pass_hash, $first_name, $middle_name, $last_name, 
-	$phone_number, $email, $owns_dog, $owns_cat, $owns_turtle, 
-	$foster_interest, $has_pet_to_foster, $foster_explanation) == -1) {
-		echo "Error creating account";
-	}else {
-		echo "Account created successfully";
-	}
+    if ($password == $confirm_password) {
+    	if (addUser($user_name, $pass_hash, $first_name, $middle_name, $last_name, 
+    	$phone_number, $email, $owns_dog, $owns_cat, $owns_turtle, 
+    	$foster_interest, $has_pet_to_foster, $foster_explanation) == -1) {
+    		echo "Error creating account";
+    	}else {
+    		echo "Account created successfully";
+    	}
+    }else {
+        echo "Error: password fields do not match";
+    }
 }
 ?>
 
@@ -46,12 +51,13 @@ if (isset($_POST['done'])) {
 	</head>
 	<body>
 		<div class="Content">
-			<?php include 'header.php' ?>
+			<?php include 'inc/header.php' ?>
 			
 			<div class="CreateAccount">
 				<form method='post'>
 					Username <input type="text" name="user_name" required><br><br>
 					Password <input type="password" name="password" required><br><br>
+                    Confirm Password <input type="password" name="confirm_password" required><br><br>
 					First Name <input type="text" name="first_name" required><br><br>
 					Middle Name <input type="text" name="middle_name"><br><br>
 					Last Name <input type="text" name="last_name" required><br><br>
@@ -70,7 +76,7 @@ if (isset($_POST['done'])) {
 				</form>	
 			</div>		
 
-			<?php include 'footer.php' ?>
+			<?php include 'inc/footer.php' ?>
 		</div>
 	</body>
 </html>

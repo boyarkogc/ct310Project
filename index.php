@@ -14,10 +14,10 @@ initializeDatabase();
 	</head>
 	<body>
 		<div class="Content">
-			<?php include 'header.php' ?>
+			<?php include 'inc/header.php' ?>
 			<p> We are a no-kill shelter eager to find a loving home for each of animals in our care. We focus on family-friendly dogs needing a new family.</p>
 			<p> Please follow the links above to learn more about our orginization or to find a new family member for your home.</p>			
-			<?php include 'footer.php' ?>
+			<?php include 'inc/footer.php' ?>
 		</div>
 	</body>
 </html>

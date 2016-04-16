@@ -60,7 +60,7 @@ if (isset($_POST['newpass']) && isset($_POST['confirmnewpass'])) {
 	</head>
 	<body>
 		<div class="Content">
-			<?php include 'header.php' ?>
+			<?php include 'inc/header.php' ?>
 			<?php if (isset($reset_message)) { echo $reset_message . "\n"; } ?>
 			<form method='post' style="padding:1%">
 				Username <input type="text" name="user_name" required><br><br>
@@ -68,7 +68,7 @@ if (isset($_POST['newpass']) && isset($_POST['confirmnewpass'])) {
 				<input type='submit' value='Send Reset Email'><br>
 			</form>		
 <?php } ?>	
-			<?php include 'footer.php'; ?> 
+			<?php include 'inc/footer.php'; ?> 
 		</div>
 	</body>
 </html>

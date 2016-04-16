@@ -26,7 +26,7 @@ if (isset ($_POST['login'])) {
 	</head>
 	<body>
 		<div class="Content">
-			<?php include 'header.php' ?>
+			<?php include 'inc/header.php' ?>
 
 			<?php if (isset($_SESSION['username'])) { ?>
 				<div class="LoginTitle">You are currently logged in as <?php echo $_SESSION['username']; ?>.</div>
@@ -52,7 +52,7 @@ if (isset ($_POST['login'])) {
 					<button type="submit" class="NewAccountButton">Don't Have an Account?  Click Here!</button>
 				</form>	
         		<?php }; ?>			
-			<?php include 'footer.php' ?>
+			<?php include 'inc/footer.php' ?>
 		</div>
 	</body>
 </html>

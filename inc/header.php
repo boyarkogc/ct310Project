@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en-US">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<meta name="author" content="Greg Boyarko, Alexander Hennings" />
-		<meta name="description" content="The Header, including title and URL bar, for a fake adoption site."/>
-		<title>Animal Rescue and Adoption Center</title>
-		<link href="css/style.css" rel="stylesheet" type="text/css" />
-	</head>
+
 	<div class="Header">
 		<img src="Media/pawprint.png">
 		<div class="MainTitle">Animal Rescue and Adoption Center</div>
