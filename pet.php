@@ -39,8 +39,8 @@ if (isset($_POST['done'])) {
 			<?php include 'header.php' ?>
 			<div class="IndividualDogPhoto"><img src="getImage.php?image_id=<?php echo $imageRecord["image_id"];?>" alt =""></div>
 			<!--title="Image source: https://www.petfinder.com/wp-content/uploads/2012/11/dog-how-to-select-your-new-best-friend-thinkstock99062463.jpg-->
-		        <div class="PetName" style="font-weight:heavy">Name: <?php echo $pet["pet_name"]; ?></div><br>
-			<div class="PetDescription" style="font-weight:heavy"> Description: <?php echo $pet["details"]; ?></div><br>
+		        <div class="PetName" style="font-weight:heavy">Name: </div><?php echo $pet["pet_name"]; ?><br>
+			<div class="PetDescription" style="font-weight:heavy"> Description: </div><?php echo $pet["details"]; ?><br>
 			<div class="PetDescription" style="font-weight:heavy"> Comments: </div>
 			<br>	   	
 			<?php
