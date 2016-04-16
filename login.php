@@ -12,11 +12,23 @@ if (isset ($_POST['login'])) {
 	if (password_verify($pass, userHashByName($user))) {
 		$_SESSION['startTime'] = time();
 		$_SESSION['username'] = $user;
-	}
+	}/*else {
+		echo userHashByName($user);
+		echo 'hi';
+		echo 'hi';
+		echo 'hi';
+
+		echo 'hi';
+		echo 'hi';
+
+		echo 'hi';
+		echo 'hi';
+		echo password_verify($user, $pass);
+	}*/
 	//header("Location: https://$host$uri/index.php");
 }
 ?>
-<!--<!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html lang="en-US">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -25,20 +37,26 @@ if (isset ($_POST['login'])) {
 		<title>Animal Rescue and Adoption Center</title>
 		<link href="css/style.css" rel="stylesheet" type="text/css" />
 	</head>
-	<body>-->
-<?php include 'inc/header.php'; ?>
-	<div class="Content">
-		<div class="LoginTitle">LOGIN</div>
-		<div id="loginform">
-			<form method="post" action="login.php" class="Login">
-				Username: <input type="text" name="username" size="30" class="LoginField"><br/>
-				Password: <input type="password" name="password" size="30" class="LoginField"><br/>
-				<input type="hidden" value="done" name="login">
-				<input type="submit" value="Login" class="LoginButton">
-			</form>
+	<body>
+		<div class="Content">
+			<?php include 'header.php' ?>
+			<div class="LoginTitle">LOGIN</div>
+			<div id="loginform">
+				<form method="post" action="login.php" class="Login">
+					Username: <input type="text" name="username" size="30" class="LoginField"><br/>
+					Password: <input type="password" name="password" size="30" class="LoginField"><br/>
+					<input type="hidden" value="done" name="login">
+					<input type="submit" value="Login" class="LoginButton">
+				</form>
+			</div>
+			<form action="password_reset.php">
+				<button type="submit" class="NewPasswordButton">Forgot Your Password? Reset it here.</button>
+			</form>	
+			
+			<form action="create_account.php">
+				<button type="submit" class="NewAccountButton">Don't Have an Account?  Click Here!</button>
+			</form>		
+			<?php include 'footer.php' ?>
 		</div>
-		<button type="button" class="NewAccountButton" onclick="alert('Hello world!')">Don't Have an Account?  Click Here!</button>
-	</div>
-<?php include 'inc/footer.php'; ?>
-<!--</body>
-</html>-->
+	</body>
+</html>
