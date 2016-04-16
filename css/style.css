@@ -104,11 +104,18 @@ body {
 	margin-top:0.5%;
 }
 
+.NewPasswordButton{
+	padding:0.2%;
+	font-weight:heavy;
+	margin:1%;
+	margin-top:1%;
+}
+
 .NewAccountButton{
 	padding:0.2%;
 	font-weight:heavy;
 	margin:1%;
-	margin-top:3%;
+	margin-top:1%;
 }
 
 .AddAnimalButton{
@@ -128,6 +135,19 @@ body {
 	float:left;
 	padding-left:1%;
 	padding-bottom:0.5%;
+}
+
+.CreateAccount{
+	height:75%;
+	width: 50%;
+	margin:5%;
+	padding:1%;
+	margin-right: auto;
+	margin-left: auto;
+	border-style:solid;
+	border-color:#064070;
+	text-align:left;
+	background-color:#D3D3D3;
 }
 
 .warning {
