@@ -1,58 +1,85 @@
-<?php 
-include 'lib/support.php';
-session_start();
-
-$ip = ip2long($_SERVER['REMOTE_ADDR']);
-$host = $_SERVER['HTTP_HOST'];
-$uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-
-if (isset ($_POST['login'])) {
-	$user = filter_var($_POST['username'], FILTER_SANITIZE_SPECIAL_CHARS);
-	$pass = filter_var($_POST['password'], FILTER_SANITIZE_SPECIAL_CHARS);
-	if (password_verify($pass, userHashByName($user))) {
-		$_SESSION['startTime'] = time();
-		$_SESSION['username'] = $user;
-	}
-}
+<?php
+$pageTitle = "Login";
+include 'control.php'; 
+include 'top.php'; 
+require_once 'lib/passwordLib.php'; 
 ?>
-<!DOCTYPE HTML>
-<html lang="en-US">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<meta name="author" content="Greg Boyarko, Alexander Hennings" />
-		<meta name="description" content="A fake adoption site created for the second CT310 Project at Colorado State University."/>
-		<title>Animal Rescue and Adoption Center</title>
-		<link href="css/style.css" rel="stylesheet" type="text/css" />
-	</head>
-	<body>
-		<div class="Content">
-			<?php include 'inc/header.php' ?>
 
-			<?php if (isset($_SESSION['username'])) { ?>
-				<div class="LoginTitle">You are currently logged in as <?php echo $_SESSION['username']; ?>.</div>
-			<?php } else { ?>
-				<div class="LoginTitle">LOGIN</div>
-			<?php }; ?>
+<style>
+    #loginForm {
+	margin-left: auto;
+	margin-right: auto;
+	width: 250px;
+	padding: 0 10px 10px 10px;
+	margin-top: 10px;
+    }
+</style>
 
-			<div id="loginform">
-				<form method="post" action="login.php" class="Login">
-					Username: <input type="text" name="username" size="30" class="LoginField"><br/>
-					Password: <input type="password" name="password" size="30" class="LoginField"><br/>
-					<input type="hidden" value="done" name="login">
-					<input type="submit" value="Login" class="LoginButton">
-				</form>
-			</div>							
+</head>
+<body id="<?php echo $pageTitle?>">
+
+<?php include 'header.php'; ?>
+
+    <div id="content">
+	<div id="loginForm">
+
+	<?php
+	if (!isset($_SESSION['username'])){
+
+            if (isset($_POST['psw']) && isset($_POST['username'])){
+
+                $passwordToCheck =strip_tags($_POST['psw']);
+                $usernameToCheck= strip_tags($_POST['username']);
+
+                try {
+                    $dbh = new PDO ( "sqlite:./doghouse.db" );
+                } catch ( PDOException $e ) {
+                    echo 'Connection failed (Help!): ' . $e->getMessage ();
+                }
+            
+                $stmt = $dbh->query('SELECT  username, password FROM Person');
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                foreach ($result as $User) {
+                    if($User['username'] == $usernameToCheck){
+                        if(password_verify($passwordToCheck,$User['password'])){
+                            $loginTime = date ( "l d, M. g:i a", time () );
+                            $_SESSION["loginTime"] = $loginTime;
+                            $_SESSION["username"] = $usernameToCheck;
+                            header('Location: login.php');
+                        }
+                    }
+                }	
+                            
+                if(!isset($_SESSION['username'])){
+                    echo "<p>Username and password does not match</p>";
+                }
+            }
+		
+	    // Form has not been filled out.
+            else {
+	    ?>
+                <h2>Login</h2>
+                <form method="post" action="login.php">
+                    <p>Username</p>  <input type="text" name="username"    size="30"><br/>
+                    <p>Password</p>  <input type="password" name="psw" size="30" style="margin-bottom:15px;"><br/>
+                    <input type="submit" value="Submit">
+                </form>
+        
+                <h3> Forgot your password? Then click <a href = "ForgotPassword.php"> Here! </a> </h3>
+                <?php
+
+                if(isset($_SESSION['White'])){
+                    echo '<h4> Make a new Account <a href = "NewUser.php"> Here! </a> </h4>';	
+                }
+            }
+
+	} else { //they are already logged in.
+			echo "<p>You have been logged in!<p>";
 			
-			<form action="password_reset.php">
-				<button type="submit" class="NewPasswordButton">Forgot Your Password? Reset it here.</button>
-			</form>	
+	}
+	?>
+	</div>
+    </div>
 
-			<?php if (($ip >= ip2long("129.82.44.0") && $ip <= ip2long("129.82.45.255")) OR ($ip >= ip2long("97.124.253.0") && $ip <= ip2long("97.124.253.255")) OR ($ip >= ip2long("75.166.60.0") && $ip <= ip2long("75.166.60.255"))){ ?>
-				<form action="create_account.php">
-					<button type="submit" class="NewAccountButton">Don't Have an Account?  Click Here!</button>
-				</form>	
-        		<?php }; ?>			
-			<?php include 'inc/footer.php' ?>
-		</div>
-	</body>
-</html>
+<?php include 'footer.php'; ?>

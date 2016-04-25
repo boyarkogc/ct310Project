@@ -1,32 +1,36 @@
-<!DOCTYPE html>
-<div class="Header">
-	<img src="Media/pawprint.png">
-	<div class="MainTitle">Animal Rescue and Adoption Center</div>
-		<ul class="URLbar">
-			<li class="Links"> 
-				<a href="index.php">HOME</a>
-			</li>
-			<li class="Links">
-				<a href="about.php">ABOUT US</a>
-			</li>
-			<li class="Links">
-				<a href="theanimals.php">ADOPTABLE DOGS</a>
-			</li>
-			<?php if(isset($_SESSION["username"])): ?>
-				<li class="Links">
-					<a href="theanimals.php">ADD AN ANIMAL</a>
-				</li>
-				<li class="Links">				
-					<a href="logout.php">LOGOUT</a>
-				</li>
-			<?php else: ?>
-				<li class="Links">
-					<a href="add_pet.php">ADD AN ANIMAL</a>
-				</li>
-				<li class="Links">				
-					<a href="login.php">LOGIN</a>
-				</li>
-			<?php endif; ?>	
-		</ul>
-</div>
+<!-- start of header/banner to include on every page -->
+<header>
+    <div id="topBar">
+        <div style="display:inline; padding-right: 3em;">
+            <?php
+            if(isset($_SESSION["username"])){
+                echo "<p style='color:white; display:inline;'> / </p> ";
+                echo $_SESSION['username'];
+                echo "<p style='color:white; display:inline;'> / </p> ";
+                $currentPage = $_SERVER['PHP_SELF'];
+                echo "<a href='$currentPage?logout=true'>logout</a>" ;
+                echo "<p style='color:white; display:inline;'> / </p> ";
+	     } else {
+                echo "<p style='color:white; display:inline;'> / </p> ";
+                echo "<a href='./login.php'>login</a>" ;
+                echo "<p style='color:white; display:inline;'> / </p> ";
+            }
+            ?>
+        </div>
+    </div>
+
+    <div id="mainHeader">
+       <img id="headerLogo" src="Logo.png" width="150px" height="103px"/>
+       <p id="headerMotto">Take home your dream pet today.</p>
+    </div>
+
+</header>
+
+<nav>
+    <a href="./index.php" id="homeNav">Home</a>
+    <a href="./aboutus.php" id="aboutusNav">About Us</a>
+    <a href="./adopt.php" id="adoptNav">Adopt</a>
+    <a href="./addDog.php" id="addDogNav">Add A Dog</a>
+</nav>
+
 
