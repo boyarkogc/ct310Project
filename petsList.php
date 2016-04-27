@@ -1,7 +1,7 @@
 <?php
     header('Content-Type: text/json'); 
 
-    $full_url = "http://" . $_SERVER['SERVER_NAME'];
+    $full_url = "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 
     try{
         $dbh = new PDO("sqlite:doghouse.db");
@@ -16,16 +16,22 @@
         $petKind = "Dog";//hardcoded in temporarily
         $breed = "Boxer";//hardcoded in temporarily
         $datePosted = "1/1/1900";//hardcoded in temporarily
+        $petID = $row['pet_id'];
 
         $pictureSQL = "SELECT pictureName FROM PetPictures WHERE pet_id='$petID' LIMIT 1";
         $pictureFileName = $dbh->query($pictureSQL)->fetchColumn();
+        $imageURL = $full_url . "/getImage.php/?image=" . $pictureFileName; 
 
-        $petID = $row['pet_id'];
-        $descURL = 'dogs.php?pet_id=$petID';
-        $picture = "SELECT pictureName FROM PetPictures WHERE pet_id='$petID' LIMIT 1";
-        $pictureFileName = $dbh->query($picture)->fetchColumn();
-        echo "<img class='thumbnails' src='images/" . $pictureFileName . "' width='300' height='300'/>";  
-    }
+        $descURL = $full_url . "/dogs.php?pet_id=" . $petID;
 
-    echo json_encode($Status);
+        $status = Array("petName" => "$petName", 
+                        "petKind" => "$petKind", 
+                        "breed" => "$breed",
+                        "datePosted" => "$datePosted",
+                        "imageURL" => "$imageURL",
+                        "petID" => "$petID",
+                        "descURL" => "$descURL");
+
+        echo json_encode($status);
+    }    
 ?>
