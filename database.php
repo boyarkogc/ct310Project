@@ -29,6 +29,8 @@ function createTablePets($dbh){
 			       age INTEGER NOT NULL,
 			       neutered BOOL NOT NULL,
 			       shortText TEXT NOT NULL,
+			       dateposted TEXT NOT NULL,
+			       breed TEXT NOT NULL,
 			       longText TEXT NOT NULL)";
 
     $status = $dbh->exec ($sql);

@@ -30,17 +30,20 @@ include 'top.php';
                 $petNeutered = SQLite3::escapeString ($_POST["petNeutered"]);
                 $petSD = SQLite3::escapeString ($_POST["petSD"]);
                 $petLD = SQLite3::escapeString ($_POST["petLD"]);
-                
+                $Breed = SQLite3::escapeString ($_POST["Breed"]);
+
                 try {
                     $dbh = new PDO("sqlite:doghouse.db");
                 } catch(PDOException $e) {
                     echo 'Connection failed. Error: ' . $e->getMessage();
                 }
-        
+        		
+        		
+				$Date = date("m/d/Y");
 
-                $sql = "INSERT INTO Pets (name, weight, age, neutered, shortText, longText) VALUES (:name,:weight,:age,:neutered,:shortText,:longText)";
+                $sql = "INSERT INTO Pets (name, weight, age, neutered, shortText, dateposted, breed, longText) VALUES (:name,:weight,:age,:neutered,:shortText, :dateposted, :breed, :longText)";
                 $stmt = $dbh->prepare($sql);
-                $stmt->execute( array( ":name" => $petName, ":weight" => $petWeight, ":age" => $petAge, ":neutered" => $petNeutered, ":shortText" => $petSD, ":longText" => $petLD));
+                $stmt->execute( array( ":name" => $petName, ":weight" => $petWeight, ":age" => $petAge, ":neutered" => $petNeutered, ":shortText" => $petSD, ":dateposted" => $Date , ":breed" =>$Breed, ":longText" => $petLD));
 	       
                 $dogID = $dbh->lastInsertID("id");
                 
@@ -56,11 +59,13 @@ include 'top.php';
                     $petNeutered =  (isset($_POST["petNeutered"]) ? 1 : 0);
                     $petSD = strip_tags($_POST["petSD"]);
                     $petLD = strip_tags($_POST["petLD"]);
+                    $Breed = strip_tags($_POST["Breed"]);
 
 		    
 
 		    echo "<h3>Is this correct?</h3>";
 		    echo "<p>Name: " . $petName . "</p>";
+		    echo "<p>Name: " . $Breed . "</p>";
 		    echo "<p>Weight: " . $petWeight . "</p>";
 		    echo "<p>Age: " . $petAge . "</p>";
 		    echo "<p>Neuteured: " . ($petNeutered==0 ? "No" : "Yes") . "</p>";
@@ -70,6 +75,7 @@ include 'top.php';
 
 		    <form style="display:inline" method="post" >
 			<input type="hidden" name="petName" value="<?php echo $petName ?>">
+			<input type="hidden" name="Breed" value="<?php echo $Breed ?>">
 			<input type="hidden" name="petWeight" value="<?php echo $petWeight ?>">
 			<input type="hidden" name="petAge" value="<?php echo $petAge ?>">
 			<input type="hidden" name="petNeutered" value="<?php echo $petNeutered ?>">
@@ -88,6 +94,7 @@ include 'top.php';
 		    <h2>Add a Dog</h2>
 		    <form method="post" >
 			Pet Name<br/> <input type="text" name="petName" size="30" required><br/><br/>
+			Breed<br/> <input type="text" name="Breed" size="30" required><br/><br/>
 			Weight <br/><input type="number" name="petWeight"   min="0" max="999" size="3" required> lbs.<br/><br/>
 			Age<br/> <input type="number" name="petAge"    size="3" min="0" max="999" required><br/><br/>
 			Neutered?<br/> <input type="checkbox" name="petNeutered" ><br/><br/>
