@@ -1,7 +1,9 @@
 <?php
     header('Content-Type: text/json'); 
 
-    $full_url = "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+    $host = $_SERVER['HTTP_HOST'];
+    $uri = rtrim (dirname($_SERVER['PHP_SELF']), '/\\');
+    $base_url = "https://$host$uri";
 
     try{
         $dbh = new PDO("sqlite:doghouse.db");
@@ -20,9 +22,9 @@
 
         $pictureSQL = "SELECT pictureName FROM PetPictures WHERE pet_id='$petID' LIMIT 1";
         $pictureFileName = $dbh->query($pictureSQL)->fetchColumn();
-        $imageURL = $full_url . "/getImage.php/?image=" . $pictureFileName; 
+        $imageURL = $base_url . "/getImage.php/?image=" . $pictureFileName; 
 
-        $descURL = $full_url . "/dogs.php?pet_id=" . $petID;
+        $descURL = $base_url . "/dogs.php?pet_id=" . $petID;
 
         $status = Array("petName" => "$petName", 
                         "petKind" => "$petKind", 
