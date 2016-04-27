@@ -30,6 +30,7 @@ function createTablePets($dbh){
 			       neutered BOOL NOT NULL,
 			       shortText TEXT NOT NULL,
 			       dateposted TEXT NOT NULL,
+			       typeOfPet Text Not NUll,
 			       breed TEXT NOT NULL,
 			       longText TEXT NOT NULL)";
 
