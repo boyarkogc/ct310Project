@@ -15,9 +15,9 @@
 
     foreach ($dbh->query($sql) as $row){
         $petName = $row['name'];
-        $petKind = "Dog";//hardcoded in temporarily
-        $breed = "Boxer";//hardcoded in temporarily
-        $datePosted = "1/1/1900";//hardcoded in temporarily
+        $petKind = $row['typeOfPet'];
+        $breed = $row['breed'];
+        $datePosted = $row['dateposted'];
         $petID = $row['pet_id'];
 
         $pictureSQL = "SELECT pictureName FROM PetPictures WHERE pet_id='$petID' LIMIT 1";
