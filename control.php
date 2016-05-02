@@ -8,7 +8,7 @@ $siteDescription = "1st project for CT310 at CSU";
 $siteKeywords = "CT310";
 $siteAuthors = "Wade, Jeff";
 $siteStylesheet = "projectstyle.css";
-$whitelist = array("129.82.44.","129.82.45.","129.82.46.","127.0.0.1");
+$whitelist = array("129.82.44.","129.82.45.","129.82.46.","127.0.0.1","98.245.150.248");
 
 $sessionName = "NoCoDoghouse";
 
@@ -35,6 +35,11 @@ function logout(){
 /****************************************************************************/
 /*****		 Session start and begining php for each page		*****/
 /****************************************************************************/
+if(!(file_exists("tmp"))){
+	if(!(mkdir ("tmp",0775))){
+		$Err = "Couldnt make folder";
+	}
+}
 session_save_path("tmp");
 session_name ( $sessionName );
 session_start ();

@@ -42,7 +42,7 @@ include 'top.php';
         		
 				$Date = date("m/d/Y");
 
-                $sql = "INSERT INTO Pets (name, weight, age, neutered, shortText, dateposted, typeOfPet, breed, longText) VALUES (:name,:weight,:age,:neutered,:shortText, :dateposted, :typeOfPet. :breed, :longText)";
+                $sql = "INSERT INTO Pets (name, weight, age, neutered, shortText, dateposted, typeOfPet, breed, longText) VALUES (:name,:weight,:age,:neutered,:shortText, :dateposted, :typeOfPet, :breed, :longText)";
                 $stmt = $dbh->prepare($sql);
                 $stmt->execute( array( ":name" => $petName, ":weight" => $petWeight, ":age" => $petAge, ":neutered" => $petNeutered, ":shortText" => $petSD, ":dateposted" => $Date , ":typeOfPet" => $Type, ":breed" =>$Breed, ":longText" => $petLD));
 	       
@@ -67,8 +67,8 @@ include 'top.php';
 
 		    echo "<h3>Is this correct?</h3>";
 		    echo "<p>Name: " . $petName . "</p>";
-		    echo "<p>Name: " . $Breed . "</p>";
-		    echo "<p>Name: " . $Type . "</p>";
+		    echo "<p>Breed: " . $Breed . "</p>";
+		    echo "<p>Pet type: " . $Type . "</p>";
 		    echo "<p>Weight: " . $petWeight . "</p>";
 		    echo "<p>Age: " . $petAge . "</p>";
 		    echo "<p>Neuteured: " . ($petNeutered==0 ? "No" : "Yes") . "</p>";
@@ -99,7 +99,7 @@ include 'top.php';
 		    <form method="post" >
 			Pet Name<br/> <input type="text" name="petName" size="30" required><br/><br/>
 			Breed<br/> <input type="text" name="Breed" size="30" required><br/><br/>
-			Type<br/> <input type="text" name="Breed" size="30" required><br/><br/>
+			Type<br/> <input type="text" name="Type" size="30" required><br/><br/>
 			Weight <br/><input type="number" name="petWeight"   min="0" max="999" size="3" required> lbs.<br/><br/>
 			Age<br/> <input type="number" name="petAge"    size="3" min="0" max="999" required><br/><br/>
 			Neutered?<br/> <input type="checkbox" name="petNeutered" ><br/><br/>

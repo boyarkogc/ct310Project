@@ -40,7 +40,7 @@ include 'top.php';
             
             $_SESSION["reset"] = $randomString;
             $_SESSION['Guy'] = $_POST ['mail'];
-            $content = "https://www.cs.colostate.edu/~jeffpenn/project2/PasswordReset.php?".$randomString; //This will need to be changed to where ever we end up hosting this.
+            $content = "https://www.cs.colostate.edu/~wadesher/P3/PasswordReset.php?".$randomString; //This will need to be changed to where ever we end up hosting this.
             
             foreach ($Users as $User) {
                 if ($User['username'] == $_POST['mail']) {

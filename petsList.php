@@ -1,6 +1,17 @@
 <?php
     header('Content-Type: text/json'); 
 
+
+	class DOG{
+	public $petname;
+	public $petKind;
+	public $breed;
+	public $dateposted;
+	public $imageURL;
+	public $petid;
+	public $descURL;
+	}
+
     $host = $_SERVER['HTTP_HOST'];
     $uri = rtrim (dirname($_SERVER['PHP_SELF']), '/\\');
     $base_url = "https://$host$uri";
@@ -11,29 +22,23 @@
         echo 'Connection failed. Error: ' . $e->getMessage();
     }
 
-    $sql = "SELECT name,age,pet_id FROM Pets";
-
+    $sql = "SELECT name,age,pet_id,breed,datePosted,typeOfPet FROM Pets";
+	$stat;
     foreach ($dbh->query($sql) as $row){
-        $petName = $row['name'];
-        $petKind = $row['typeOfPet'];
-        $breed = $row['breed'];
-        $datePosted = $row['dateposted'];
-        $petID = $row['pet_id'];
+        $status = new DOG();
+        $status->petname = $row['name'];
+        $status->petKind = $row['typeOfPet'];
+        $status->breed = $row['breed'];
+        $status->dateposted = $row['dateposted'];
+        $status->petid = $row['pet_id'];
 
-        $pictureSQL = "SELECT pictureName FROM PetPictures WHERE pet_id='$petID' LIMIT 1";
+        $pictureSQL = "SELECT pictureName FROM PetPictures WHERE pet_id='$row[pet_id]' LIMIT 1";
         $pictureFileName = $dbh->query($pictureSQL)->fetchColumn();
-        $imageURL = $base_url . "/getImage.php/?image=" . $pictureFileName; 
+        $status->imageURL = $base_url . "/getImage.php/?image=" . $pictureFileName; 
 
-        $descURL = $base_url . "/dogs.php?pet_id=" . $petID;
+        $status->descURL = $base_url . "/getDesc.php?pet_id=" . $row['pet_id'];
+	$stat[] = $status;
+}
 
-        $status = Array("petName" => "$petName", 
-                        "petKind" => "$petKind", 
-                        "breed" => "$breed",
-                        "datePosted" => "$datePosted",
-                        "imageURL" => "$imageURL",
-                        "petID" => "$petID",
-                        "descURL" => "$descURL");
-
-        echo json_encode($status);
-    }    
+        echo json_encode($stat);
 ?>
