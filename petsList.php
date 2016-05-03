@@ -11,7 +11,7 @@
         echo 'Connection failed. Error: ' . $e->getMessage();
     }
 
-    $sql = "SELECT name,age,pet_id FROM Pets";
+    $sql = "SELECT * FROM Pets";
 
     foreach ($dbh->query($sql) as $row){
         $petName = $row['name'];
@@ -24,7 +24,7 @@
         $pictureFileName = $dbh->query($pictureSQL)->fetchColumn();
         $imageURL = $base_url . "/getImage.php/?image=" . $pictureFileName; 
 
-        $descURL = $base_url . "/dogs.php?pet_id=" . $petID;
+        $descURL = $base_url . "/getDesc.php?pet_id=" . $petID;
 
         $status = Array("petName" => "$petName", 
                         "petKind" => "$petKind", 
