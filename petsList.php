@@ -14,7 +14,7 @@
 
     $host = $_SERVER['HTTP_HOST'];
     $uri = rtrim (dirname($_SERVER['PHP_SELF']), '/\\');
-    $base_url = "https://$host$uri";
+    $base_url = "http://$host$uri";
 
     try{
         $dbh = new PDO("sqlite:doghouse.db");
