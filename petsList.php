@@ -1,8 +1,6 @@
 <?php
     header('Content-Type: text/json'); 
-
-
-	class DOG{
+    class DOG{
 	public $petname;
 	public $petKind;
 	public $breed;
@@ -10,7 +8,7 @@
 	public $imageURL;
 	public $petid;
 	public $descURL;
-	}
+    }
 
     $host = $_SERVER['HTTP_HOST'];
     $uri = rtrim (dirname($_SERVER['PHP_SELF']), '/\\');
