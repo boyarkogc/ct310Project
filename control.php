@@ -70,3 +70,8 @@ foreach ($whitelist as $query) {
 }
 
 ?>
+
+ <script>
+
+        
+</script>

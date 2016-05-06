@@ -62,7 +62,7 @@ table {
 </script>
 
 </head>
-<body id="<?php echo $pageTitle?>" onload="List()">
+<body id="<?php echo $pageTitle?>">
 
 
 <?php include 'header.php'; ?>

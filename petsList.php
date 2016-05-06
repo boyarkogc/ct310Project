@@ -1,12 +1,12 @@
 <?php
     header('Content-Type: text/json'); 
     class DOG{
-	public $petname;
+	public $petName;
 	public $petKind;
 	public $breed;
-	public $dateposted;
+	public $datePosted;
 	public $imageURL;
-	public $petid;
+	public $petId;
 	public $descURL;
     }
 
@@ -24,11 +24,11 @@
 	$stat;
     foreach ($dbh->query($sql) as $row){
         $status = new DOG();
-        $status->petname = $row['name'];
+        $status->petName = $row['name'];
         $status->petKind = $row['typeOfPet'];
         $status->breed = $row['breed'];
-        $status->dateposted = $row['dateposted'];
-        $status->petid = $row['pet_id'];
+        $status->datePosted = $row['dateposted'];
+        $status->petId = $row['pet_id'];
 
         $pictureSQL = "SELECT pictureName FROM PetPictures WHERE pet_id='$row[pet_id]' LIMIT 1";
         $pictureFileName = $dbh->query($pictureSQL)->fetchColumn();

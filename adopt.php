@@ -1,3 +1,5 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
 <?php
 $pageTitle = "Adopt";
 include 'control.php'; 
@@ -15,22 +17,73 @@ td{
     text-align:center;
 }
 </style>
-<script type="text/javascript">
-	var http = new XMLHttpRequest();
-	
-	function search(term) {
-		http.abort();
-		http.open("GET", "adoptSearch.php?term="+term, true);
-		http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		http.onreadystatechange = function() {
-			if (http.readyState == 4) {
-				document.getElementById('dogResults').innerHTML = http.responseText;
-			}
-		}
-		http.send();
-	}
+ <script>
 
+        $(document).ready(function(){
+        	
+        	var Col = 0;
+
+    	$.ajax({
+
+        	url:	  "https://www.cs.colostate.edu/~ct310/yr2016sp/more_assignments/project03masterlist.php" ,
+          	mimeType: "text/plain",
+
+			success:  function(result){
+						var	sites = JSON.parse(result);
+						var PetsList;
+
+						for (i = 0; i < sites.length; i++) {
+
+						PetsList = sites[i].petsListURL;
+						PList(PetsList);
+						  
+
+						}
+						
+					  },
+            error:	  function(result){
+
+						  console.log("ERROR");
+
+					  }
+        });
+
+    	
+		function PList(DaURL){
+						
+						 
+
+		  $.ajax({         	
+
+		  	url:	 DaURL,
+          	mimeType: "text/plain",
+			success:  function(res){
+						var Stat = JSON.parse(res);
+
+						
+							for(j=0; j < Stat.length;j++){
+							$('#Pets').append('<tr><td> <a href = Pet.php?' + Col + '>' + Stat[j].petName +' </a></td><td>' +  Stat[j].petKind +'</td><td>' + Stat[j].breed +'</td><td>' +  Stat[j].datePosted+'</td><td>' +  Stat[j].petId + '</td></tr>' );
+						
+							Col++;
+							}
+					
+
+					},
+				error:	  function(result){
+
+						  console.log("ERROR");
+
+					  }
+						
+		  });
+		
+
+		}
+
+
+    });
 </script>
+
 
 </head>
 <body id="<?php echo $pageTitle?>">
@@ -38,58 +91,22 @@ td{
 <?php include 'header.php'; ?>
 
     <div id="content">
-	<h3>Adoptable Dogs</h3>
-	<form>
-        
-		Search: <input type="text" onkeyup="search(this.value)" />
-	</form>
+		<h3>Adoptable Pets</h3>
+	
+		<p id="Test"></p>
 
-	<hr>
+		<hr/>
 
-	<div id="dogResults">
-	<?php
-	///////////////////////////////////  This will be replaced by search //////////////////////////////
-	try{
-		$dbh = new PDO("sqlite:doghouse.db");
-	} catch(PDOException $e) {
-		echo 'Connection failed. Error: ' . $e->getMessage();
-	}
-
-	$sql = "SELECT name,age,pet_id FROM Pets";
-
-	echo "<table>";
-	$td_count = 0;
-
-	foreach ($dbh->query($sql) as $row){
-	    $petName = $row['name'];
-	    $petID = $row['pet_id'];
-	    $picture = "SELECT pictureName FROM PetPictures WHERE pet_id='$petID' LIMIT 1";
-	    $pictureFileName = $dbh->query($picture)->fetchColumn();
-
-	    if(($td_count % 3)==0){ echo "<tr>";}
-	    echo "<td style='vertical-align:bottom;'>";
-	    
-	    if($pictureFileName==''){
-		echo "<h3>" . $petName . " Has No Pictures </h3>";
-	    	echo "</br>";
-	    	echo "<a href='dogs.php?pet_id=$petID'>" . $petName . "</a>";
-	    } else {
-	    	echo "<img class='thumbnails' src='images/" . $pictureFileName . "' width='300' height='300'/>";
-	    	echo "</br>";
-	    	echo "<a href='dogs.php?pet_id=$petID'>" . $petName . "</a>";
-	    }
-	    echo "</td>";
-
-	    if(($td_count % 3)==2){ echo "</tr>";}
-	    $td_count++;
-	    
-	}
-	if(($td_count % 3)!=2){ echo "</tr>";}
-	echo "</table>";
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	?>
-        
-	</div>
+			<div id="dogResults">
+				
+				
+        		<table id="Pets">
+        			<tr>
+						<th>Pet name</th><th>Kind of pet</th><th>Breed</th><th>Date Posted</th><th>Pet Id</th>
+					</tr>
+        		</table>
+			</div>
     </div>
 
 <?php include 'footer.php'; ?>
+
