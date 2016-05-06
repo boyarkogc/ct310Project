@@ -45,125 +45,83 @@ include 'top.php';
 <?php include 'footer.php'; ?>
 
 <script>
-			var GCol = 0;
-            var GCloud = [];
-            var parser = document.createElement('a');
-			parser.href = window.location.href;
-			var num = parser.search.substring(1);
+var GCol = 0;
+var GCloud = [];
+var parser = document.createElement('a');
+parser.href = window.location.href;
+var num = parser.search.substring(1);
+
 $(document).ready(function(){
-            
-            
 
-        $.ajax({
+	$.ajax({
+		url:      "https://www.cs.colostate.edu/~ct310/yr2016sp/more_assignments/project03masterlist.php" ,
+		mimeType: "text/plain",
 
-            url:      "https://www.cs.colostate.edu/~ct310/yr2016sp/more_assignments/project03masterlist.php" ,
-            mimeType: "text/plain",
+		success:  function(result){
+			var sites = JSON.parse(result);
+			var PetsList;
+			for (i = 0; i < sites.length; i++) {
+				PetsList = sites[i].petsListURL;
+				PetList(PetsList);
+			}
+		},
+		error:    function(result){
+			console.log("ERROR");
+		}
+	});
 
-            success:  function(result){
-                        var sites = JSON.parse(result);
-                        var PetsList;
+	function PetList(DaURL){
+		$.ajax({          
+			url:     DaURL,
+			mimeType: "text/plain",
 
-                        for (i = 0; i < sites.length; i++) {
+			success:  function(res){
+				//alert(res)
+				var Stat = JSON.parse(res);
+				for(j=0; j < Stat.length;j++){
+					GCloud[GCol] = Stat[j];                            
+					if(GCol == num){
+						$('#Name').append(GCloud[GCol].petName + "<br>");
+						$('#Breed').append(GCloud[GCol].breed+ "<br>");
+						$('#PetKind').append(GCloud[GCol].petKind+ "<br>");
+						$('#DatePosted').append(GCloud[GCol].datePosted+ "<br>");
+						$('#ID').append(GCloud[GCol].petId+ "<br>");
+						descript(GCloud[GCol].descURL);
+						var xhttp = new XMLHttpRequest(); 
+						xhttp.onreadystatechange = function() {
+							if (xhttp.readyState == 4 && xhttp.status == 200) { 
+								var image = document.getElementById('Pic'); 
+								var newthing = xhttp.responseText;
+								image.src = "data:image/png;base64, " + newthing ;
+							}
+						};
+						xhttp.open("POST", GCloud[GCol].imageURL, true);
+						xhttp.send();
+					}
+					GCol++;
+				}
+			},
+			error:    function(result){
+				console.log("ERROR");
+			}
+		});
+	}
 
-                        PetsList = sites[i].petsListURL;
-                        PetList(PetsList);
-                          
+	function descript(theURL){
+		//alert(theURL)
+		$.ajax({
+			url:       theURL,
+			mimeType: "text/plain",
 
-                        }
-                        
-                      },
-            error:    function(result){
-
-                          console.log("ERROR");
-
-                      }
-        });
-
-        
-        function PetList(DaURL){
-                        
-                         
-
-          $.ajax({          
-
-            url:     DaURL,
-            mimeType: "text/plain",
-            success:  function(res){
-                        var Stat = JSON.parse(res);
-
-                        
-                            for(j=0; j < Stat.length;j++){
-
-                                GCloud[GCol] = Stat[j];                            
-                            if(GCol == num){
-                            	$('#Name').append(GCloud[GCol].petName + "<br>");
-                            	$('#Breed').append(GCloud[GCol].breed+ "<br>");
-                            	$('#PetKind').append(GCloud[GCol].petKind+ "<br>");
-                            	$('#DatePosted').append(GCloud[GCol].datePosted+ "<br>");
-                            	$('#ID').append(GCloud[GCol].petId+ "<br>");
-                            	descript(GCloud[GCol].descURL);
-
-
-                            	
-                            	
-
-                            
-								var xhttp = new XMLHttpRequest(); 
-  								xhttp.onreadystatechange = function() {
-    							if (xhttp.readyState == 4 && xhttp.status == 200) { 
-    							var image = document.getElementById('Pic'); 
-     							var newthing = xhttp.responseText;
-     							image.src = "data:image/png;base64, " + newthing ;
-
-   									}
-  								};
-  							xhttp.open("POST", GCloud[GCol].imageURL, true);
-  							xhttp.send();
-		
-       	                    }
-                            GCol++;
-                            }
-                    
-
-                    },
-                error:    function(result){
-
-                          console.log("ERROR");
-
-                      }
-                        
-          });
-        
-
-        }
-
-    });
-
-function descript(theURL){
-                            	$.ajax({
-
-           						 url:       theURL,
-           						mimeType: "text/plain",
-
-           						 success:  function(result){
-                        			var desc = JSON.parse(result);
-                        			if(Array.is_array(desc)){
-                        				$('#Desc').append(desc[0].description);
-                       					}
-                       					else{
-                       						$('#Desc').append(desc.description );
-                       					}
-
-                                           
-                      			},
-            						error:    function(result){
-
-                         			 console.log("ERROR");
-
-                      			}
-        					});
-                            }
-
-
+			success:  function(result){
+				var desc = JSON.parse(result);
+				$('#Desc').append(desc.description);
+			},
+			error:    function(result){
+				console.log("ERROR");
+			}
+		});
+	}
+});
 
 </script>
