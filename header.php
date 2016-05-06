@@ -31,6 +31,7 @@
     <a href="./aboutus.php" id="aboutusNav">About Us</a>
     <a href="./adopt.php" id="adoptNav">Adopt</a>
     <a href="./addDog.php" id="addDogNav">Add A Dog</a>
+    <a href="./Status.php" id="StatusNav">Federation Status</a>
 </nav>
 
 
