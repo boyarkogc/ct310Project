@@ -45,13 +45,16 @@ include 'top.php';
 <?php include 'footer.php'; ?>
 
 <script>
-var GCol = 0;
-var GCloud = [];
-var parser = document.createElement('a');
-parser.href = window.location.href;
-var num = parser.search.substring(1);
 
 $(document).ready(function(){
+    var GCol = 0;
+    var GCloud = [];
+    /*var parser = document.createElement('a');
+    parser.href = window.location.href;
+    variables = parser.search.substring(1);
+    split = variabels.split("&")*/
+    var siteName = getQueryVariable("siteName");
+    var id = getQueryVariable("id");
 
 	$.ajax({
 		url:      "https://www.cs.colostate.edu/~ct310/yr2016sp/more_assignments/project03masterlist.php" ,
@@ -62,7 +65,9 @@ $(document).ready(function(){
 			var PetsList;
 			for (i = 0; i < sites.length; i++) {
 				PetsList = sites[i].petsListURL;
-				PetList(PetsList);
+                if (sites[i].siteName == siteName) {
+                    PetList(PetsList);
+                }
 			}
 		},
 		error:    function(result){
@@ -80,7 +85,7 @@ $(document).ready(function(){
 				var Stat = JSON.parse(res);
 				for(j=0; j < Stat.length;j++){
 					GCloud[GCol] = Stat[j];                            
-					if(GCol == num){
+					if(Stat[j].petId == id){
 						$('#Name').append(GCloud[GCol].petName + "<br>");
 						$('#Breed').append(GCloud[GCol].breed+ "<br>");
 						$('#PetKind').append(GCloud[GCol].petKind+ "<br>");
@@ -122,6 +127,17 @@ $(document).ready(function(){
 			}
 		});
 	}
+
+    function getQueryVariable(variable)
+    {
+           var query = window.location.search.substring(1);
+           var vars = query.split("&");
+           for (var i=0;i<vars.length;i++) {
+                   var pair = vars[i].split("=");
+                   if(pair[0] == variable){return pair[1];}
+           }
+           return(false);
+    }
 });
 
 </script>
